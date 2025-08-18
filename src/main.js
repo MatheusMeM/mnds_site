@@ -4,6 +4,8 @@
 // our CSS for styling, our data layer (fetchProjects), our routing utility,
 // and our UI components. This is a clean, modular entry point.
 import './style.css';
+import SceneManager from './scenes/SceneManager.js';
+import BackgroundScene from './scenes/backgroundScene.js';
 import { fetchProjects } from './utils/projectLoader.js';
 import { router } from './utils/router.js';
 import { renderProjectGrid } from './components/projectGrid.js';
@@ -13,6 +15,7 @@ import { renderProjectDetail } from './components/projectDetailView.js';
 // Architectural Rationale: Caching these DOM elements at initialization is a
 // performance best practice. It avoids repeated, costly DOM queries inside
 // functions that may be called frequently, such as the route handler.
+const canvas = document.querySelector('.webgl-canvas');
 const gridView = document.querySelector('#grid-view');
 const detailView = document.querySelector('#detail-view');
 const workGridContainer = document.querySelector('#work-grid-container');
@@ -124,6 +127,16 @@ function setupEventListeners() {
 // --- Main Application Setup ---
 // This is the application's boot sequence.
 async function initializePortfolio() {
+  // 1. Initialize the 3D Scene
+  const sceneManager = new SceneManager(canvas);
+  const backgroundScene = new BackgroundScene();
+  sceneManager.setScene(backgroundScene);
+  
+  // Start the render loop and set up resizing
+  sceneManager.render();
+  window.addEventListener('resize', () => sceneManager.onWindowResize());
+
+  // 2. Set up the rest of the application
   setupEventListeners();
   // The initial route is handled on page load, ensuring that bookmarked
   // URLs or direct navigation works correctly.

@@ -169,3 +169,14 @@ body {
 .main-nav a:hover {
   color: var(--color-text-primary);
 }
+
+/* ---------------------------------- */
+/* 6. WebGL Canvas Styles             */
+/* ---------------------------------- */
+.webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+  z-index: -1; /* Pushes the canvas behind all other content */
+}

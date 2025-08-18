@@ -31,9 +31,9 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 - [ ] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
     - `[ ]` `docs`: Set performance targets (e.g., Lighthouse score > 95, Largest Contentful Paint < 2.5s, mobile interactive < 5s). This informs all future decisions.
 
-- [ ] **Set Up Core Scene Architecture** `[E:5, I:High, R:Med]`
-    - `[ ]` `refactor`: Create a main `SceneManager.js` class to handle the renderer, camera, and render loop.
-    - `[ ]` `refactor`: Design a simple interface for "scenes" (`backgroundScene`, `aboutScene`) so they can be easily swapped or layered by the manager.
+- [x] **Set Up Core Scene Architecture** `[E:5, I:High, R:Med]`
+    - `[x]` `refactor`: Create a main `SceneManager.js` class to handle the renderer, camera, and render loop.
+    - `[x]` `refactor`: Design a simple interface for "scenes" (`backgroundScene`, `aboutScene`) so they can be easily swapped or layered by the manager.
 
 ---
 
@@ -49,9 +49,9 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
     - `[x]` `feat`: Create the `ProjectGrid.js` component that fetches data and renders project cards.
     - `[x]` `feat`: Implement the click-through logic to a placeholder project detail view/modal.
 
-- [ ] **Develop Background Scene v1** `[E:5, I:High, R:High]`
-    - `[ ]` `feat`: Implement the abstract Three.js background with basic geometry/shaders.
-    - `[ ]` `feat`: Add subtle mouse-tracking interactivity.
+- [x] **Develop Background Scene v1** `[E:5, I:High, R:High]`
+    - `[x]` `feat`: Implement the abstract Three.js background with basic geometry/shaders.
+    - `[x]` `feat`: Add subtle mouse-tracking interactivity.
     - **QA Gate:** Test on a low-powered mobile device. If performance is poor, this high-risk item must be re-architected before proceeding.
 
 - [x] **Orchestrate Application Entry Point** `[E:2, I:High, R:Low]`
