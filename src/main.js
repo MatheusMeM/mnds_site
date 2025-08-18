@@ -20,6 +20,7 @@ const gridView = document.querySelector('#grid-view');
 const detailView = document.querySelector('#detail-view');
 const workGridContainer = document.querySelector('#work-grid-container');
 const mainNav = document.querySelector('.main-nav');
+const header = document.querySelector('.main-header'); // Get the parent header
 
 // --- Global State ---
 // Architectural Rationale: A simple, module-scoped variable for our projects.
@@ -107,13 +108,12 @@ function setupEventListeners() {
         }
     });
 
-    // SPA Navigation Interception: This is the key to making the main nav work
-    // without page reloads. It intercepts the default link behavior and hands
-    // control over to our client-side router.
-    mainNav.addEventListener('click', (event) => {
-        if (event.target.tagName === 'A') {
-            event.preventDefault(); 
-            const path = event.target.getAttribute('href');
+    // Listen for clicks on the entire header for robust navigation
+    header.addEventListener('click', (event) => {
+        const link = event.target.closest('a'); // Find the clicked link
+        if (link) {
+            event.preventDefault(); // Prevent full page reload
+            const path = link.getAttribute('href');
             router.navigateTo(path);
         }
     });
