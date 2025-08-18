@@ -52,6 +52,8 @@ body {
 
 #app {
   padding: var(--spacing-lg);
+  /* Add this line to create space for the absolute header */
+  margin-top: 100px; /* Adjust if header height changes */
 }
 
 /* ---------------------------------- */
@@ -120,6 +122,10 @@ body {
 /* ---------------------------------- */
 /* 4. View Management                 */
 /* ---------------------------------- */
+.view-container {
+  width: 100%;
+}
+
 .view-container.hidden {
   display: none;
 }

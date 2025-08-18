@@ -99,7 +99,7 @@ This section details the responsibility and public API of the most important mod
 
 Development has proceeded through a phased roadmap, establishing a robust foundation before implementing core features.
 
--   **Current Status:** Phase 1 (Core Implementation) is complete. Phase 2 (Experience & Interaction) is beginning.
+-   **Current Status:** Phase 2 (Experience & Interaction) is in progress.
 
 -   **`feat(webgl): implement core scene manager and v1 background scene`**
     -   The application now has a live, animated 3D background powered by a modular `SceneManager`. This establishes the core visual identity.
@@ -115,6 +115,12 @@ Development has proceeded through a phased roadmap, establishing a robust founda
 
 -   **`feat(core): establish project's data layer and API contract`**
     -   The initial data architecture was created, decoupling content from code via `projects.json` and a `projectLoader` utility.
+
+-   **`feat(ui): implement full project detail view`**
+    -   The project detail view now displays all project metadata, descriptive text, and media gallery with proper handling of both images and videos. The component is styled professionally and is fully responsive.
+
+-   **`refactor(ui): update header to scrolling layout and add link animations`**
+    -   The header was refactored to a scrolling layout with the logo on the left and navigation links on the right. Navigation links now feature a subtle underline and brightness animation on hover. The MNDS logo is now a clickable link that navigates to the home view.
 
 ---
 

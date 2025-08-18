@@ -72,9 +72,9 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
     - `[ ]` `perf`: Aggressively optimize geometry, materials, and lighting. No dynamic shadows. Throttle mouse events.
     - **QA Gate:** Verify 60fps performance on target desktop and mobile devices.
 
-- [ ] **Implement Full Project Detail View** `[E:3, I:Med, R:Low]`
-    - `[ ]` `feat`: Build out the modal or page to display the full project video, description, and tags.
-    - `[ ]` `style`: Animate the entry/exit of this view.
+- [x] **Implement Full Project Detail View** `[E:3, I:Med, R:Low]`
+    - `[x]` `feat`: Build out the modal or page to display the full project video, description, and tags.
+    - `[x]` `style`: Animate the entry/exit of this view.
 
 - [ ] **Refine Navigation & Flow** `[E:2, I:Med, R:Low]`
     - `[ ]` `feat`: Implement smooth-scrolling and active states for the main navigation.
