@@ -195,7 +195,7 @@ body {
   background-color: var(--color-text-primary);
   transform: scaleX(0); /* Start hidden */
   transform-origin: center;
-  transition: transform var(--transition-speed) var(--easing-function);
+  /* The 'transition' property has been removed to make the effect instantaneous */
 }
 
 /* The underline animation on hover */
