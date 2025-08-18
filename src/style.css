@@ -154,15 +154,79 @@ body {
 }
 
 .logo-link {
+  position: relative;
+  display: inline-block;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  height: 24px; /* Adjust based on your font-size-lg */
 }
 
-.logo {
+/* Common styles for both default and hover states */
+.logo-default-state,
+.logo-hover-state {
+  position: absolute;
+  top: 0;
+  left: 0;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  /* The cursor and click behavior are now managed by the .logo-link parent */
+  white-space: nowrap;
+}
+
+/* Default state is visible initially */
+.logo-default-state {
+  opacity: 1;
+}
+
+/* Hover state is hidden initially */
+.logo-hover-state {
+  display: flex; /* CRITICAL: Enables vertical alignment */
+  align-items: center; /* CRITICAL: Vertically centers the items */
+  opacity: 0;
+}
+
+/* On hover, swap the opacity of the two states */
+.logo-link:hover .logo-default-state {
+  opacity: 0;
+}
+
+.logo-link:hover .logo-hover-state {
+  opacity: 1;
+}
+
+/* Style for the underlined part of the hover text */
+.logo-hover-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.logo-hover-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-text-primary);
+}
+
+/* Style and animation for the full name */
+.logo-hover-fullname {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  margin-left: var(--spacing-sm); /* Adds a small space */
+  
+  /* Animation setup */
+  opacity: 0; /* Hidden even when parent is visible */
+  transition: opacity var(--transition-speed) var(--easing-function);
+  transition-delay: 50ms; /* Optional: adds a slight delay for a more polished feel */
+}
+
+/* The fade-in animation trigger */
+.logo-link:hover .logo-hover-fullname {
+  opacity: 1;
 }
 
 .main-nav {
