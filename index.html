@@ -2,12 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" /><!-- We can change this later -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Matheus Mendes | Creative Technology Director</title>
   </head>
   <body>
-    <div id="app"></div>
+    <header class="main-header">
+      <div class="logo">MNDS</div>
+      <nav class="main-nav">
+        <a href="/">Work</a>
+        <a href="/projects">Projects</a>
+        <a href="/about">About</a>
+      </nav>
+    </header>
+
+    <main id="app">
+      <!-- Grid View Container -->
+      <div id="grid-view" class="view-container">
+        <div id="work-grid-container" class="project-grid">
+          <!-- Project cards will be rendered here by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Project Detail View Container -->
+      <div id="detail-view" class="view-container hidden">
+        <!-- A specific project's details will be rendered here -->
+        <p>Project Detail Placeholder</p>
+      </div>
+    </main>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "deled-rock-in-rio-2022",
+    "title": "Rock in Rio Interactive",
+    "year": 2022,
+    "client": "DELED Creative Studio",
+    "role": "Lead Technical Director",
+    "category": "work",
+    "tags": ["TouchDesigner", "Show Control", "DMX", "Large Scale"],
+    "thumbnail": {
+      "type": "video",
+      "path": "/media/work/deled-rock-in-rio-2022/thumbnail/hero.mp4"
+    },
+    "body": "A detailed narrative about the project. This text block will be displayed on the project's dedicated page. It can support **Markdown** for formatting, allowing for *rich text*, links, and lists.",
+    "mediaGallery": [
+      {
+        "type": "video",
+        "path": "/media/work/deled-rock-in-rio-2022/videos/case-study.mp4",
+        "caption": "The official case study video."
+      },
+      {
+        "type": "image",
+        "path": "/media/work/deled-rock-in-rio-2022/images/shot-01.jpg",
+        "caption": "On-site installation view."
+      }
+    ]
+  },
+  {
+    "id": "personal-nixie-clock-2021",
+    "title": "Nixie Tube Clock",
+    "year": 2021,
+    "client": "Personal Project",
+    "role": "Designer & Engineer",
+    "category": "project",
+    "tags": ["Microcontroller", "PCB Design", "C++"],
+    "thumbnail": {
+      "type": "image",
+      "path": "/media/project/personal-nixie-clock-2021/thumbnail/hero.gif"
+    },
+    "body": "This project was a deep dive into high-voltage electronics and embedded systems. The goal was to build a functional and aesthetically pleasing timepiece from scratch.",
+    "mediaGallery": [
+       {
+        "type": "video",
+        "path": "/media/project/personal-nixie-clock-2021/videos/demo.mp4",
+        "caption": "A short demo of the clock in action."
+      },
+      {
+        "type": "image",
+        "path": "/media/project/personal-nixie-clock-2021/images/final-build.jpg",
+        "caption": "The final assembled clock."
+      }
+    ]
+  }
+]

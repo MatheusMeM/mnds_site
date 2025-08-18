@@ -1,96 +1,171 @@
+/* src/style.css */
+
+/* ---------------------------------- */
+/* 1. Design System (Tokens)          */
+/* ---------------------------------- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colors */
+  --color-background: #0D0D0D; /* A slightly softer black */
+  --color-text-primary: #EAEAEA;
+  --color-text-secondary: #888888;
+  --color-border: #222222;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Typography */
+  --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-size-xl: clamp(2rem, 8vw, 5rem); /* Responsive heading */
+  --font-size-lg: 1.5rem;
+  --font-size-md: 1rem;
+  --font-size-sm: 0.875rem;
+  --font-weight-bold: 700;
+  --font-weight-normal: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Spacing */
+  --spacing-unit: 8px;
+  --spacing-sm: var(--spacing-unit);      /* 8px */
+  --spacing-md: calc(var(--spacing-unit) * 2); /* 16px */
+  --spacing-lg: calc(var(--spacing-unit) * 4); /* 32px */
+  --spacing-xl: calc(var(--spacing-unit) * 8); /* 64px */
+
+  /* Motion */
+  --transition-speed: 300ms;
+  --easing-function: ease-in-out;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* ---------------------------------- */
+/* 2. Global Resets & Base Styles     */
+/* ---------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-family: var(--font-family-primary);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding-top: 100px; /* Adjust this value if header height changes */
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+/* ---------------------------------- */
+/* 3. Project Grid Styles             */
+/* ---------------------------------- */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.project-card {
+  aspect-ratio: 4 / 3;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: transform var(--transition-speed) var(--easing-function);
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.project-card-media-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.project-card-video,
+.project-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity var(--transition-speed) var(--easing-function);
+}
+
+.project-card:hover .project-card-video,
+.project-card:hover .project-card-image {
+  opacity: 0.2;
+}
+
+.project-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: var(--spacing-md);
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+}
+
+.project-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.project-client {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ---------------------------------- */
+/* 4. View Management                 */
+/* ---------------------------------- */
+.view-container.hidden {
+  display: none;
+}
+
+/* ---------------------------------- */
+/* 5. Header & Navigation Styles      */
+/* ---------------------------------- */
+
+.main-header {
+  /* Positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100; /* Ensures header stays above other content */
+
+  /* Layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg);
+
+  /* Appearance */
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  cursor: default; /* It's a brand mark, not a link for now */
 }
 
-.card {
-  padding: 2em;
+.main-nav {
+  display: flex;
+  gap: var(--spacing-lg);
 }
 
-.read-the-docs {
-  color: #888;
+.main-nav a {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-speed) var(--easing-function);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.main-nav a:hover {
+  color: var(--color-text-primary);
 }
