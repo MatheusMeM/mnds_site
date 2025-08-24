@@ -6,8 +6,7 @@ backend:
   name: github
   repo: MatheusMeM/mnds_site # Your exact GitHub username/repository
   branch: main
-  base_url: sveltia-cms-auth.matheusmsmendes.workers.dev
-  auth_endpoint: /api/auth # The path on the worker for authentication
+  base_url: https://sveltia-cms-auth.matheusmsmendes.workers.dev
   
 # Media files will be saved in the correct project-specific folders.
 media_folder: "public/media/{{fields.category}}/{{fields.id}}"
