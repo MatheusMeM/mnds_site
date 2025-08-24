@@ -1,5 +1,27 @@
 {
   "project_list": [
-    
+    {
+      "id": "simbiose",
+      "title": "Simbiose",
+      "year": 2023,
+      "client": "OiFuturo",
+      "role": "Tech Director",
+      "category": "work",
+      "tags": [
+        "software"
+      ],
+      "body": "# HEADING1\n\n[LINK](https://oifuturo.org.br/evento/simbiose-a-conexao-pelos-fungos/)\n\n![](/media/projects/1b4f2f9a-8341-4e68-a6dc-178194943f0b.jpg)",
+      "thumbnail": {
+        "type": "image",
+        "path": "/media/projects/b311aa1c-53fa-4616-bccc-7406d61b1a64.jpg"
+      },
+      "mediaGallery": [
+        {
+          "type": "image",
+          "path": "/media/projects/43ca454a-6252-48b4-8f3a-2294c8575142.jpg",
+          "caption": ""
+        }
+      ]
+    }
   ]
 }
