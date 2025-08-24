@@ -28,12 +28,17 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
     - `[x]` `docs`: Establish design tokens (colors, typography, spacing, grid) in a central CSS file or variables.
     - `[x]` `docs`: Define motion design principles (transition speeds, easing functions).
 
-- [ ] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
-    - `[ ]` `docs`: Set performance targets (e.g., Lighthouse score > 95, Largest Contentful Paint < 2.5s, mobile interactive < 5s). This informs all future decisions.
-
 - [x] **Set Up Core Scene Architecture** `[E:5, I:High, R:Med]`
     - `[x]` `refactor`: Create a main `SceneManager.js` class to handle the renderer, camera, and render loop.
     - `[x]` `refactor`: Design a simple interface for "scenes" (`backgroundScene`, `aboutScene`) so they can be easily swapped or layered by the manager.
+
+- [x] **Implement Sveltia CMS for Content Management** `[E:3, I:High, R:Med]`
+    - `[x]` `feat`: Deployed and configured the self-hosted Sveltia Auth Worker on Cloudflare.
+    - `[x]` `chore`: Created and configured the GitHub OAuth App for secure authentication.
+    - `[x]` `feat`: Integrated the Sveltia CMS admin panel at `/admin/` with a production-ready `config.yml`.
+
+- [ ] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
+    - `[ ]` `docs`: Set performance targets (e.g., Lighthouse score > 95).
 
 ---
 
@@ -61,6 +66,10 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
     - `[x]` `feat`: Create a client-side router to enable unique URLs for each project.
     - `[x]` `feat`: Implement navigation between the project grid and detail views without page reloads.
 
+- [x] **Implement Full Project Detail View** `[E:3, I:Med, R:Low]`
+    - `[x]` `feat`: Build out the modal or page to display the full project video, description, and tags.
+    - `[x]` `style`: Animate the entry/exit of this view.
+
 ---
 
 ### **Phase 2: Experience & Interaction (The "Wow" Factor)**
@@ -68,16 +77,13 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 *Objective: Layer in the signature interactive elements and polish the user journey.*
 
 - [ ] **Develop "About" Interactive Scene** `[E:8, I:High, R:High]`
-    - `[ ]` `feat`: Build the `aboutScene.js` with the 3D model and mouse-controlled point light.
-    - `[ ]` `perf`: Aggressively optimize geometry, materials, and lighting. No dynamic shadows. Throttle mouse events.
+    - `[ ]` `feat`: Build the `aboutScene.js` with a 3D model and mouse-controlled point light.
+    - `[ ]` `perf`: Aggressively optimize geometry, materials, and lighting.
     - **QA Gate:** Verify 60fps performance on target desktop and mobile devices.
 
-- [x] **Implement Full Project Detail View** `[E:3, I:Med, R:Low]`
-    - `[x]` `feat`: Build out the modal or page to display the full project video, description, and tags.
-    - `[x]` `style`: Animate the entry/exit of this view.
-
 - [ ] **Refine Navigation & Flow** `[E:2, I:Med, R:Low]`
-    - `[ ]` `feat`: Implement smooth-scrolling and active states for the main navigation.
+    - `[ ]` `feat`: Implement active states for the main navigation links to indicate the current page.
+    - `[ ]` `style`: Animate the entry/exit transitions between the grid and detail views.
 
 ---
 
@@ -88,8 +94,6 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 - [ ] **Implement Preloader & Asset Management** `[E:3, I:Med, R:Med]`
     - `[ ]` `feat`: Create a loading manager to track the progress of 3D assets.
     - `[ ]` `feat`: Display a minimal loading screen to prevent a blank page on initial visit.
-
-- [ ] `feat(cms)`: Implement Sveltia CMS for content management `[E:2, I:High, R:Low]`
 
 - [ ] **Conduct Accessibility (a11y) Audit & Remediation** `[E:5, I:High, R:Med]`
     - `[ ]` `fix`: Ensure all UI is keyboard-navigable.
@@ -110,6 +114,5 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 
 *A collection of potential future enhancements once the core project is complete.*
 
-- [ ] `idea`: Integrate a headless CMS to manage projects.
 - [ ] `idea`: Experiment with more advanced shaders in the scenes.
 - [ ] `idea`: Implement project filtering based on tags.
