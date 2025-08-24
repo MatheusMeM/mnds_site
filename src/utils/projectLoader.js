@@ -16,8 +16,9 @@ export async function fetchProjects() {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     
-    const projects = await response.json();
-    return projects;
+    const data = await response.json();
+    
+    return data.project_list || [];
 
   } catch (error) {
     console.error("Failed to fetch or parse projects.json:", error);

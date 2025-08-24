@@ -1,27 +1,5 @@
 {
   "project_list": [
-    {
-      "id": "cogumelos-oi-futuro",
-      "title": "Symbiosis – The connection through fungi",
-      "year": 2023,
-      "client": "OiFuturo",
-      "role": "Tech Director",
-      "category": "work",
-      "tags": [
-        "Software"
-      ],
-      "body": "test body\n\nPress Coverage: \n[oiFuturo](https://oifuturo.org.br/evento/simbiose-a-conexao-pelos-fungos/)\n[Globo](https://g1.globo.com/rj/rio-de-janeiro/o-que-fazer-no-rio-de-janeiro/noticia/2023/02/25/simbiose-mostra-no-rio-mergulha-no-mundo-dos-fungos.ghtml)",
-      "thumbnail": {
-        "type": "image",
-        "path": "/media/aca980001d89/df7bd9648cd0/3e8414e2-1bc1-41a6-8fe7-fcb5b4adaa02.jpg"
-      },
-      "mediaGallery": [
-        {
-          "type": "image",
-          "path": "/media/96fbfa67e7e9/f8fd76bbb94f/b311aa1c-53fa-4616-bccc-7406d61b1a64.jpg",
-          "caption": ""
-        }
-      ]
-    }
+    
   ]
 }
