@@ -122,6 +122,19 @@ function setupEventListeners() {
     // clicks the browser's back or forward buttons, our application re-renders
     // the correct view.
     window.addEventListener('popstate', handleRouteChange);
+
+    // --- ADD THIS NEW BLOCK ---
+    // Listen for global keydown events for the "Escape" key functionality
+    window.addEventListener('keydown', (event) => {
+        // Check if the pressed key is "Escape"
+        if (event.key === 'Escape') {
+            // Check if the detail view is currently visible (i.e., not hidden)
+            if (!detailView.classList.contains('hidden')) {
+                // If so, navigate back to the home grid
+                router.navigateTo('/');
+            }
+        }
+    });
 }
 
 // --- Main Application Setup ---
