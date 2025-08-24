@@ -1,8 +1,5 @@
 // src/main.js
 
-// Imports: The application's dependencies are clearly defined. We are importing
-// our CSS for styling, our data layer (fetchProjects), our routing utility,
-// and our UI components. This is a clean, modular entry point.
 import './style.css';
 import SceneManager from './scenes/SceneManager.js';
 import BackgroundScene from './scenes/backgroundScene.js';
@@ -12,151 +9,141 @@ import { renderProjectGrid } from './components/projectGrid.js';
 import { renderProjectDetail } from './components/projectDetailView.js';
 
 // --- DOM Element Cache ---
-// Architectural Rationale: Caching these DOM elements at initialization is a
-// performance best practice. It avoids repeated, costly DOM queries inside
-// functions that may be called frequently, such as the route handler.
 const canvas = document.querySelector('.webgl-canvas');
 const gridView = document.querySelector('#grid-view');
 const detailView = document.querySelector('#detail-view');
 const workGridContainer = document.querySelector('#work-grid-container');
-const mainNav = document.querySelector('.main-nav');
-const header = document.querySelector('.main-header'); // Get the parent header
+const header = document.querySelector('.main-header');
 
 // --- Global State ---
-// Architectural Rationale: A simple, module-scoped variable for our projects.
-// For an application of this scale, this is an effective and straightforward
-// state management solution. It serves as a single source of truth for
-// project data after the initial fetch.
 let allProjects = [];
 
-// --- Route Handler ---
-// This is the core controller of the application. Its responsibility is to
-// synchronize the UI state with the current browser URL.
-async function handleRouteChange() {
-  // State-aware data fetching: A critical optimization. The application only
-  // fetches project data once and then reuses the cached `allProjects` array.
-  if (allProjects.length === 0) {
-    allProjects = await fetchProjects();
+// --- Animation Utility ---
+const transitionDuration = 300; // Must match --transition-speed in CSS
+
+function transitionViews(currentView, nextView, renderCallback) {
+  // 1. Animate the current view out
+  if (currentView) {
+    currentView.classList.add('view-exit');
   }
 
-  // Decoupling: The router utility is queried for the current location. This
-  // main file doesn't need to know *how* the URL is parsed, only what the result is.
-  const { path, category, projectId } = router.getCurrentLocation();
+  // 2. After the animation, hide the old view, render content, and show the new view
+  setTimeout(() => {
+    if (currentView) {
+      currentView.classList.add('hidden');
+      currentView.classList.remove('view-exit');
+    }
 
-  // View Management: The system defaults to a "clean slate" by hiding all
-  // views, then explicitly showing the correct one. This prevents bugs where
-  // multiple views might be visible simultaneously.
-  gridView.classList.add('hidden');
-  detailView.classList.add('hidden');
-  
-  // Conditional Rendering Logic:
-  if (category && projectId) { // Handles project detail pages like /work/some-id
+    // 3. Render the new content
+    renderCallback();
+
+    // 4. Prepare the new view for entry animation
+    nextView.classList.add('view-enter');
+    nextView.classList.remove('hidden');
+
+    // 5. Force a browser reflow to ensure the transition is applied
+    void nextView.offsetWidth;
+
+    // 6. Animate the new view in
+    nextView.classList.remove('view-enter');
+  }, currentView ? transitionDuration : 0); // No delay for initial render of detail view
+}
+
+// --- Route Handler ---
+async function handleRouteChange(isInitialLoad = false) {
+  const { path, category, projectId } = router.getCurrentLocation();
+  const currentView = document.querySelector('.view-container:not(.hidden)');
+
+  if (category && projectId) {
     const project = allProjects.find(p => p.id === projectId);
     if (project) {
-      // If a valid project is found, the detail view is shown and rendered.
-      detailView.classList.remove('hidden');
-      renderProjectDetail(project, detailView);
+      if (currentView === detailView && detailView.dataset.currentProject === projectId) return; // Already on the correct page
+      
+      const renderFn = () => {
+        renderProjectDetail(project, detailView);
+        detailView.dataset.currentProject = projectId;
+      };
+      
+      // If it's the first page load, we don't need to animate out the (empty) grid
+      transitionViews(isInitialLoad ? null : currentView, detailView, renderFn);
     } else {
-      // Graceful error handling: If the URL points to a non-existent project,
-      // it safely redirects the user to the home page.
       router.navigateTo('/');
     }
-  } else { // Handles top-level pages like /, /projects, /about
-    gridView.classList.remove('hidden');
-    let projectsToRender;
-    // The switch statement correctly filters the data based on the route,
-    // ensuring the grid displays the relevant subset of projects.
-    switch (path) {
-      case '/projects':
-        projectsToRender = allProjects.filter(p => p.category === 'project');
-        break;
-      case '/about':
-        // This is a placeholder for future implementation, correctly noted.
-        projectsToRender = allProjects; 
-        console.log("Navigated to About page (placeholder).");
-        break;
-      case '/':
-      default:
-        projectsToRender = allProjects.filter(p => p.category === 'work');
-        break;
-    }
-    // The same grid component is reused, fed with different data, which is efficient.
-    renderProjectGrid(projectsToRender, workGridContainer);
+  } else {
+    // This is a grid view route (/, /projects, etc.)
+    if (currentView === gridView && !isInitialLoad) return; // Already on the grid
+    
+    const renderFn = () => {
+      let projectsToRender;
+      switch (path) {
+        case '/projects':
+          projectsToRender = allProjects.filter(p => p.category === 'project');
+          break;
+        case '/about':
+          projectsToRender = allProjects;
+          console.log("Navigated to About page (placeholder).");
+          break;
+        case '/':
+        default:
+          projectsToRender = allProjects.filter(p => p.category === 'work');
+          break;
+      }
+      renderProjectGrid(projectsToRender, workGridContainer);
+    };
+
+    transitionViews(currentView, gridView, renderFn);
   }
 }
 
 // --- Event Listeners Setup ---
-// Architectural Rationale: This function encapsulates all event handling,
-// keeping the main initialization logic clean. It follows the principle of
-// separating concerns.
 function setupEventListeners() {
-    // Event Delegation: A single listener is attached to the grid container.
-    // This is more performant than attaching a listener to every single project card.
     workGridContainer.addEventListener('click', (event) => {
         const projectCard = event.target.closest('.project-card');
         if (projectCard) {
             const { id, category } = projectCard.dataset;
-            // The router is used to trigger navigation, maintaining the SPA flow.
             router.navigateTo(`/${category}/${id}`);
         }
     });
 
-    // Back button functionality within the detail view.
     detailView.addEventListener('click', (event) => {
         if (event.target.closest('.back-button')) {
             router.navigateTo('/');
         }
     });
 
-    // Listen for clicks on the entire header for robust navigation
     header.addEventListener('click', (event) => {
-        const link = event.target.closest('a'); // Find the clicked link
+        const link = event.target.closest('a');
         if (link) {
-            event.preventDefault(); // Prevent full page reload
+            event.preventDefault();
             const path = link.getAttribute('href');
             router.navigateTo(path);
         }
     });
 
-    // Browser History Integration: This listener ensures that when the user
-    // clicks the browser's back or forward buttons, our application re-renders
-    // the correct view.
-    window.addEventListener('popstate', handleRouteChange);
-
-    // --- ADD THIS NEW BLOCK ---
-    // Listen for global keydown events for the "Escape" key functionality
+    window.addEventListener('popstate', () => handleRouteChange());
     window.addEventListener('keydown', (event) => {
-        // Check if the pressed key is "Escape"
-        if (event.key === 'Escape') {
-            // Check if the detail view is currently visible (i.e., not hidden)
-            if (!detailView.classList.contains('hidden')) {
-                // If so, navigate back to the home grid
-                router.navigateTo('/');
-            }
+        if (event.key === 'Escape' && !detailView.classList.contains('hidden')) {
+            router.navigateTo('/');
         }
     });
 }
 
 // --- Main Application Setup ---
-// This is the application's boot sequence.
 async function initializePortfolio() {
-  // 1. Initialize the 3D Scene
   const sceneManager = new SceneManager(canvas);
   const backgroundScene = new BackgroundScene();
   sceneManager.setScene(backgroundScene);
-  
-  // Start the render loop and set up resizing
   sceneManager.render();
   window.addEventListener('resize', () => sceneManager.onWindowResize());
 
-  // 2. Set up the rest of the application
   setupEventListeners();
-  // The initial route is handled on page load, ensuring that bookmarked
-  // URLs or direct navigation works correctly.
-  await handleRouteChange(); 
+
+  // CRITICAL FIX: The data must be loaded before any routing decisions are made.
+  allProjects = await fetchProjects();
+  
+  // Now handle the route, passing a flag to indicate it's the initial load.
+  await handleRouteChange(true); 
 }
 
 // --- Run the Application ---
-// The `DOMContentLoaded` event ensures that the script only runs after the
-// entire HTML document has been loaded and parsed.
 document.addEventListener('DOMContentLoaded', initializePortfolio);

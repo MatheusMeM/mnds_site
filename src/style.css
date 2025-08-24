@@ -387,3 +387,25 @@ body {
     gap: var(--spacing-md);
   }
 }
+
+/* ---------------------------------- */
+/* 8. View Transitions                */
+/* ---------------------------------- */
+
+.view-container {
+  /* Add transition property to the base class */
+  transition: opacity var(--transition-speed) var(--easing-function), 
+              transform var(--transition-speed) var(--easing-function);
+}
+
+/* State for a view that is currently exiting */
+.view-exit {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* State for a view that is about to enter */
+.view-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}
