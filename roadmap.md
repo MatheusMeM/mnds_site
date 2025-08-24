@@ -89,6 +89,8 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
     - `[ ]` `feat`: Create a loading manager to track the progress of 3D assets.
     - `[ ]` `feat`: Display a minimal loading screen to prevent a blank page on initial visit.
 
+- [ ] `feat(cms)`: Implement Sveltia CMS for content management `[E:2, I:High, R:Low]`
+
 - [ ] **Conduct Accessibility (a11y) Audit & Remediation** `[E:5, I:High, R:Med]`
     - `[ ]` `fix`: Ensure all UI is keyboard-navigable.
     - `[ ]` `fix`: Add appropriate ARIA attributes to interactive elements.

@@ -1,6 +1,3 @@
-Acknowledged. Here is the complete `README.md` file formatted in a single Markdown code block.
-
-```markdown
 # mnds-site Interactive Portfolio
 
 **Version:** 1.0.0
@@ -15,6 +12,16 @@ An interactive portfolio for Matheus Mendes, built as a modern Single-Page Appli
 - **Data-Driven Content:** All project information is decoupled from the application logic, stored in a central `projects.json` file. This allows for easy content updates without touching the codebase.
 - **Component-Based UI:** The user interface is built from modular components responsible for specific tasks (e.g., rendering the project grid, rendering a project detail page).
 - **Responsive, Minimalist Design:** A GMUNK-inspired aesthetic with a professional design system built on CSS variables ensures a consistent and clean look across all devices.
+
+---
+
+## Content Management
+
+This project uses **Sveltia CMS** for content management. The admin panel is accessible at `/admin/` on the live site.
+
+-   **Workflow:** Log in with your GitHub account.
+-   **Process:** Any changes made in the CMS will automatically generate a new commit in the `main` branch.
+-   **Deployment:** This commit triggers a new build and deployment on Cloudflare Pages.
 
 ---
 
@@ -101,6 +108,11 @@ Development has proceeded through a phased roadmap, establishing a robust founda
 
 -   **Current Status:** Phase 2 (Experience & Interaction) is in progress.
 
+-   **`feat(cms): implement sveltia cms`**
+    -   Integrated Sveltia CMS, a modern, Git-based headless CMS.
+    -   Configured a user-friendly admin interface at `/admin/` for managing projects.
+    -   This replaces manual JSON editing, improving workflow and reducing errors.
+
 -   **`feat(webgl): implement core scene manager and v1 background scene`**
     -   The application now has a live, animated 3D background powered by a modular `SceneManager`. This establishes the core visual identity.
 
@@ -137,6 +149,3 @@ Development has proceeded through a phased roadmap, establishing a robust founda
 3.  **Build for Production:**
     ```bash
     npm run build
-    ```
-
-```

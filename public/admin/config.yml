@@ -1,0 +1,50 @@
+# /public/admin/config.yml
+
+# Backend Configuration: Connects to your GitHub repository using PKCE.
+# This method is secure, serverless, and works on any hosting platform.
+backend:
+  name: github
+  repo: MatheusMeM/mnds_site # Your exact GitHub username/repository
+  branch: main
+  auth_type: pkce # Use the modern, platform-agnostic PKCE flow
+
+# Media files will be saved in the correct project-specific folders.
+media_folder: "public/media/{{fields.category}}/{{fields.id}}"
+public_folder: "/media/{{fields.category}}/{{fields.id}}"
+
+# Defines the editable content types.
+collections:
+  - name: "projects"
+    label: "Portfolio Content"
+    files:
+      - name: "main_projects"
+        label: "Projects"
+        file: "public/data/projects.json"
+        create: true
+        fields:
+          # The top-level widget must be a "list" to edit our array of projects.
+          - name: "project_list"
+            label: "Projects"
+            widget: "list"
+            fields: # These are the fields for EACH item IN the list.
+              - { label: "ID", name: "id", widget: "string", hint: "A unique identifier in slug-format (e.g., my-new-project-2023)" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Year", name: "year", widget: "number" }
+              - { label: "Client", name: "client", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Category", name: "category", widget: "select", options: ["work", "project"] }
+              - { label: "Tags", name: "tags", widget: "list" }
+              - { label: "Body", name: "body", widget: "markdown" }
+              - label: "Thumbnail"
+                name: "thumbnail"
+                widget: "object"
+                fields:
+                  - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
+                  - { label: "Path", name: "path", widget: "image" }
+              - label: "Media Gallery"
+                name: "mediaGallery"
+                widget: "list"
+                fields:
+                  - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
+                  - { label: "Path", name: "path", widget: "image" }
+                  - { label: "Caption", name: "caption", widget: "string", required: false }
