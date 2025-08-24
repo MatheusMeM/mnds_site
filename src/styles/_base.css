@@ -1,0 +1,27 @@
+/* src/styles/_base.css */
+
+/*
+  This file contains global resets and base styles for the application.
+*/
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-md);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  /* REMOVE the 'padding-top: 100px;' line */
+}
+
+#app {
+  padding: var(--spacing-lg);
+  /* Add this line to create space for the absolute header */
+  margin-top: 100px; /* Adjust if header height changes */
+}

@@ -1,0 +1,42 @@
+/* src/styles/_transitions.css */
+
+/*
+  This file contains styles for view management, WebGL canvas, and view transitions.
+*/
+
+/* View Management */
+.view-container {
+  width: 100%;
+}
+
+.view-container.hidden {
+  display: none;
+}
+
+/* WebGL Canvas Styles */
+.webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+  z-index: -1; /* Pushes the canvas behind all other content */
+}
+
+/* View Transitions */
+.view-container {
+  /* Add transition property to the base class */
+  transition: opacity var(--transition-speed) var(--easing-function), 
+              transform var(--transition-speed) var(--easing-function);
+}
+
+/* State for a view that is currently exiting */
+.view-exit {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* State for a view that is about to enter */
+.view-enter {
+  opacity: 0;
+  transform: translateY(-20px);
+}

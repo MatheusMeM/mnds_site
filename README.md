@@ -54,6 +54,12 @@ Development has proceeded through a phased roadmap, establishing a robust founda
 
 -   **Current Status:** Phase 2 (Experience & Interaction) is in progress.
 
+-   **`refactor(css): modularize styles into partial files`**
+    -   Refactored the monolithic `style.css` into a modular, multi-file architecture.
+    -   Created partial files for variables, base styles, header, project grid, project detail, and transitions.
+    -   The main `style.css` now acts as an entry point, importing all partials.
+    -   Improved maintainability, readability, and AI agent performance for targeted CSS context.
+
 -   **`fix(ui): implement markdown parser for project body`**
     -   Integrated the `marked.js` library to correctly render formatted text from the CMS.
     -   Project descriptions now support headings, links, bold/italic text, and other Markdown features.

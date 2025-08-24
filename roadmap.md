@@ -18,7 +18,7 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 - [x] **Define Design System & Visual Language** `[E:3, I:High, R:Low]`
 - [x] **Set Up Core Scene Architecture** `[E:5, I:High, R:Med]`
 - [x] **Implement Sveltia CMS for Content Management** `[E:3, I:High, R:Med]`
-- [ ] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
+- [x] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
 
 ---
 
@@ -74,3 +74,4 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 
 - [ ] `idea`: Experiment with more advanced shaders in the scenes.
 - [ ] `idea`: Implement project filtering based on tags.
+- [x] `refactor(css): modularize styles into partial files`
