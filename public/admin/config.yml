@@ -48,3 +48,9 @@ collections:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - { label: "Path", name: "path", widget: "image" }
                   - { label: "Caption", name: "caption", widget: "string", required: false }
+                  - label: "Layout"
+                    name: "layout"
+                    widget: "select"
+                    options: ["standard", "wide", "tall", "large", "full-bleed"]
+                    default: "standard"
+                    hint: "How this media item should be displayed in the grid."

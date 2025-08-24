@@ -11,11 +11,12 @@ import { marked } from 'marked';
  */
 function createMediaGalleryItem(media) {
   const captionHTML = media.caption ? `<figcaption>${media.caption}</figcaption>` : '';
+  const layoutClass = `layout-${media.layout || 'standard'}`;
   
   switch (media.type) {
     case 'video':
       return `
-        <figure class="gallery-item">
+        <figure class="gallery-item ${layoutClass}">
           <video src="${media.path}" controls playsinline></video>
           ${captionHTML}
         </figure>
@@ -23,7 +24,7 @@ function createMediaGalleryItem(media) {
     case 'image':
     case 'gif':
       return `
-        <figure class="gallery-item">
+        <figure class="gallery-item ${layoutClass}">
           <img src="${media.path}" alt="${media.caption || 'Project image'}">
           ${captionHTML}
         </figure>
