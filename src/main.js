@@ -14,65 +14,78 @@ const gridView = document.querySelector('#grid-view');
 const detailView = document.querySelector('#detail-view');
 const workGridContainer = document.querySelector('#work-grid-container');
 const header = document.querySelector('.main-header');
+const navLinks = document.querySelectorAll('.main-nav a');
 
 // --- Global State ---
 let allProjects = [];
+let currentPath = null; // CRITICAL FIX: State variable to track the current path
 
 // --- Animation Utility ---
 const transitionDuration = 300; // Must match --transition-speed in CSS
 
 function transitionViews(currentView, nextView, renderCallback) {
-  // 1. Animate the current view out
+  // ... (This function remains unchanged, it is already correct) ...
   if (currentView) {
     currentView.classList.add('view-exit');
   }
-
-  // 2. After the animation, hide the old view, render content, and show the new view
   setTimeout(() => {
     if (currentView) {
       currentView.classList.add('hidden');
       currentView.classList.remove('view-exit');
     }
-
-    // 3. Render the new content
     renderCallback();
-
-    // 4. Prepare the new view for entry animation
     nextView.classList.add('view-enter');
     nextView.classList.remove('hidden');
-
-    // 5. Force a browser reflow to ensure the transition is applied
     void nextView.offsetWidth;
-
-    // 6. Animate the new view in
     nextView.classList.remove('view-enter');
-  }, currentView ? transitionDuration : 0); // No delay for initial render of detail view
+  }, currentView ? transitionDuration : 0);
+}
+
+// --- Navigation State Update ---
+function updateActiveNavLink(path, category) {
+  // ... (This function remains unchanged, it is already correct) ...
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    const linkPath = link.getAttribute('href');
+    let isActive = false;
+    if (path === '/' || category === 'work') {
+      if (linkPath === '/') isActive = true;
+    } else if (path === '/projects' || category === 'project') {
+      if (linkPath === '/projects') isActive = true;
+    } else if (path === '/about') {
+      if (linkPath === '/about') isActive = true;
+    }
+    if (isActive) {
+      link.classList.add('active');
+    }
+  });
 }
 
 // --- Route Handler ---
-async function handleRouteChange(isInitialLoad = false) {
+async function handleRouteChange() {
   const { path, category, projectId } = router.getCurrentLocation();
-  const currentView = document.querySelector('.view-container:not(.hidden)');
 
+  // CRITICAL FIX: The new, correct guard clause.
+  // Exit only if the path is exactly the same as the one we're already displaying.
+  if (path === currentPath && !projectId) {
+    return;
+  }
+  currentPath = path; // Update the state to the new path
+
+  const currentView = document.querySelector('.view-container:not(.hidden)');
+  
   if (category && projectId) {
     const project = allProjects.find(p => p.id === projectId);
     if (project) {
-      if (currentView === detailView && detailView.dataset.currentProject === projectId) return; // Already on the correct page
-      
       const renderFn = () => {
         renderProjectDetail(project, detailView);
         detailView.dataset.currentProject = projectId;
       };
-      
-      // If it's the first page load, we don't need to animate out the (empty) grid
-      transitionViews(isInitialLoad ? null : currentView, detailView, renderFn);
+      transitionViews(currentView, detailView, renderFn);
     } else {
       router.navigateTo('/');
     }
   } else {
-    // This is a grid view route (/, /projects, etc.)
-    if (currentView === gridView && !isInitialLoad) return; // Already on the grid
-    
     const renderFn = () => {
       let projectsToRender;
       switch (path) {
@@ -90,13 +103,15 @@ async function handleRouteChange(isInitialLoad = false) {
       }
       renderProjectGrid(projectsToRender, workGridContainer);
     };
-
     transitionViews(currentView, gridView, renderFn);
   }
+  
+  updateActiveNavLink(path, category);
 }
 
 // --- Event Listeners Setup ---
 function setupEventListeners() {
+  // ... (This function remains unchanged, it is already correct) ...
     workGridContainer.addEventListener('click', (event) => {
         const projectCard = event.target.closest('.project-card');
         if (projectCard) {
@@ -104,13 +119,11 @@ function setupEventListeners() {
             router.navigateTo(`/${category}/${id}`);
         }
     });
-
     detailView.addEventListener('click', (event) => {
         if (event.target.closest('.back-button')) {
             router.navigateTo('/');
         }
     });
-
     header.addEventListener('click', (event) => {
         const link = event.target.closest('a');
         if (link) {
@@ -119,8 +132,7 @@ function setupEventListeners() {
             router.navigateTo(path);
         }
     });
-
-    window.addEventListener('popstate', () => handleRouteChange());
+    window.addEventListener('popstate', handleRouteChange);
     window.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !detailView.classList.contains('hidden')) {
             router.navigateTo('/');
@@ -137,12 +149,11 @@ async function initializePortfolio() {
   window.addEventListener('resize', () => sceneManager.onWindowResize());
 
   setupEventListeners();
-
-  // CRITICAL FIX: The data must be loaded before any routing decisions are made.
+  
   allProjects = await fetchProjects();
   
-  // Now handle the route, passing a flag to indicate it's the initial load.
-  await handleRouteChange(true); 
+  // Call the router once on load to render the initial correct view.
+  await handleRouteChange(); 
 }
 
 // --- Run the Application ---

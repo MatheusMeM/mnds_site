@@ -71,6 +71,16 @@ Development has proceeded through a phased roadmap, establishing a robust founda
 -   **`feat(ui): implement full project detail view`**
     -   The project detail view now dynamically renders all project metadata, text, and media.
 
+-   **`feat(ui): implement animated view transitions`**
+    -   Added smooth fade-out/fade-in animations when navigating between the project grid and detail views.
+    -   Enhanced user experience with professional, polished transitions using CSS transitions and JavaScript orchestration.
+    -   Properly handles initial page load, direct URL navigation, and all navigation paths with appropriate animations.
+
+-   **`feat(ui): implement active states for main navigation`**
+    -   Added visual feedback in the main navigation by highlighting the link corresponding to the user's current view.
+    -   Enhanced user experience with clear, immediate feedback about their location within the site.
+    -   Implemented with CSS classes and JavaScript orchestration in `main.js`.
+
 ---
 
 ## How to Run This Project

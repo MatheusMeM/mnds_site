@@ -44,8 +44,8 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
     - [ ] **`feat`**: Implement an automatic, responsive grid layout for the media gallery.
 
 - [ ] **Refine Navigation & Flow** `[E:2, I:Med, R:Low]`
-    - `[ ]` **`feat`**: Implement active states for the main navigation links to indicate the current page.
-    - `[ ]` **`style`**: Animate the entry/exit transitions between the grid and detail views.
+    - `[x]` **`feat`**: Implement active states for the main navigation links to indicate the current page.
+    - `[x]` **`style`**: Animate the entry/exit transitions between the grid and detail views.
 
 - [ ] **Develop "About" Interactive Scene** `[E:8, I:High, R:High]`
     - `[ ]` `feat`: Build the `aboutScene.js` with a 3D model and mouse-controlled point light.
