@@ -14,31 +14,11 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 *Objective: Establish the project's core architecture, tooling, and non-functional requirements. A failure in this phase creates technical debt that compounds over time.*
 
 - [x] **Establish Project Environment & Tooling** `[E:3, I:High, R:Low]`
-    - `[x]` `chore`: Setup Vite project with Vanilla JS template.
-    - `[x]` `chore`: Initialize Git repository and push to GitHub.
-    - `[x]` `chore`: Configure and deploy initial project to Cloudflare Pages.
-    - `[x]` `chore`: Set up ESLint and Prettier for code quality and consistency.
-    - `[x]` `docs`: Define RooCode AI Agent persona and project directives.
-
 - [x] **Architect Data Layer & "API" Contract** `[E:2, I:High, R:Low]`
-    - `[x]` `feat`: Finalize the schema for `projects.json`. This is our API contract.
-    - `[x]` `feat`: Create `projectLoader.js` utility with robust error handling.
-
 - [x] **Define Design System & Visual Language** `[E:3, I:High, R:Low]`
-    - `[x]` `docs`: Establish design tokens (colors, typography, spacing, grid) in a central CSS file or variables.
-    - `[x]` `docs`: Define motion design principles (transition speeds, easing functions).
-
 - [x] **Set Up Core Scene Architecture** `[E:5, I:High, R:Med]`
-    - `[x]` `refactor`: Create a main `SceneManager.js` class to handle the renderer, camera, and render loop.
-    - `[x]` `refactor`: Design a simple interface for "scenes" (`backgroundScene`, `aboutScene`) so they can be easily swapped or layered by the manager.
-
 - [x] **Implement Sveltia CMS for Content Management** `[E:3, I:High, R:Med]`
-    - `[x]` `feat`: Deployed and configured the self-hosted Sveltia Auth Worker on Cloudflare.
-    - `[x]` `chore`: Created and configured the GitHub OAuth App for secure authentication.
-    - `[x]` `feat`: Integrated the Sveltia CMS admin panel at `/admin/` with a production-ready `config.yml`.
-
 - [ ] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
-    - `[ ]` `docs`: Set performance targets (e.g., Lighthouse score > 95).
 
 ---
 
@@ -47,28 +27,11 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 *Objective: Build the primary, visible components of the site based on the architectural decisions from Phase 0.*
 
 - [x] **Implement Static UI & Layout** `[E:3, I:High, R:Low]`
-    - `[x]` `feat`: Build the core HTML structure and navigation skeleton.
-    - `[x]` `style`: Implement the design system via CSS, ensuring basic responsiveness.
-
 - [x] **Develop Dynamic Project Grid** `[E:3, I:High, R:Low]`
-    - `[x]` `feat`: Create the `ProjectGrid.js` component that fetches data and renders project cards.
-    - `[x]` `feat`: Implement the click-through logic to a placeholder project detail view/modal.
-
 - [x] **Develop Background Scene v1** `[E:5, I:High, R:High]`
-    - `[x]` `feat`: Implement the abstract Three.js background with basic geometry/shaders.
-    - `[x]` `feat`: Add subtle mouse-tracking interactivity.
-    - **QA Gate:** Test on a low-powered mobile device. If performance is poor, this high-risk item must be re-architected before proceeding.
-
 - [x] **Orchestrate Application Entry Point** `[E:2, I:High, R:Low]`
-    - `[x]` `refactor`: Update `main.js` to initialize all systems in the correct order (data fetching, UI rendering, scene management).
-
 - [x] **Implement SPA Routing for Project Pages** `[E:3, I:High, R:Low]`
-    - `[x]` `feat`: Create a client-side router to enable unique URLs for each project.
-    - `[x]` `feat`: Implement navigation between the project grid and detail views without page reloads.
-
 - [x] **Implement Full Project Detail View** `[E:3, I:Med, R:Low]`
-    - `[x]` `feat`: Build out the modal or page to display the full project video, description, and tags.
-    - `[x]` `style`: Animate the entry/exit of this view.
 
 ---
 
@@ -76,14 +39,18 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 
 *Objective: Layer in the signature interactive elements and polish the user journey.*
 
+- [ ] **Enhance Project Detail View** `[E:5, I:High, R:Low]`
+    - [x] **`fix`**: Implement Markdown parser (`marked.js`) to correctly render body text.
+    - [ ] **`feat`**: Implement an automatic, responsive grid layout for the media gallery.
+
+- [ ] **Refine Navigation & Flow** `[E:2, I:Med, R:Low]`
+    - `[ ]` **`feat`**: Implement active states for the main navigation links to indicate the current page.
+    - `[ ]` **`style`**: Animate the entry/exit transitions between the grid and detail views.
+
 - [ ] **Develop "About" Interactive Scene** `[E:8, I:High, R:High]`
     - `[ ]` `feat`: Build the `aboutScene.js` with a 3D model and mouse-controlled point light.
     - `[ ]` `perf`: Aggressively optimize geometry, materials, and lighting.
     - **QA Gate:** Verify 60fps performance on target desktop and mobile devices.
-
-- [ ] **Refine Navigation & Flow** `[E:2, I:Med, R:Low]`
-    - `[ ]` `feat`: Implement active states for the main navigation links to indicate the current page.
-    - `[ ]` `style`: Animate the entry/exit transitions between the grid and detail views.
 
 ---
 
@@ -91,22 +58,13 @@ This architectural blueprint outlines the development of the `mnds-site` portfol
 
 *Objective: Transform the functional site into a production-ready, robust, and accessible application.*
 
+- [ ] **Implement Performance Optimizations** `[E:3, I:High, R:Med]`
+    - `[ ]` **`perf`**: Implement lazy loading for media gallery images and videos to improve initial page load.
+
 - [ ] **Implement Preloader & Asset Management** `[E:3, I:Med, R:Med]`
-    - `[ ]` `feat`: Create a loading manager to track the progress of 3D assets.
-    - `[ ]` `feat`: Display a minimal loading screen to prevent a blank page on initial visit.
-
 - [ ] **Conduct Accessibility (a11y) Audit & Remediation** `[E:5, I:High, R:Med]`
-    - `[ ]` `fix`: Ensure all UI is keyboard-navigable.
-    - `[ ]` `fix`: Add appropriate ARIA attributes to interactive elements.
-    - `[ ]` `fix`: Verify sufficient color contrast.
-
 - [ ] **Implement Internationalization (i18n)** `[E:5, I:Med, R:Low]`
-    - `[ ]` `feat`: Create JSON files for `en` and `pt` languages.
-    - `[ ]` `refactor`: Abstract all UI strings to use a language-switching utility.
-
 - [ ] **Final Performance & QA Sweep** `[E:3, I:High, R:Low]`
-    - `[ ]` `perf`: Audit against the performance budget defined in Phase 0.
-    - `[ ]` `test`: Conduct cross-browser and cross-device testing.
 
 ---
 
