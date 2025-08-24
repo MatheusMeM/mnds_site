@@ -1,5 +1,9 @@
 // src/components/projectDetailView.js
 
+// 1. Import the 'marked' library
+import { marked } from 'marked';
+// src/components/projectDetailView.js
+
 /**
  * Renders a single media item for the gallery.
  * @param {object} media - A media object from the project's mediaGallery array.
@@ -35,9 +39,9 @@ function createMediaGalleryItem(media) {
  * @param {HTMLElement} containerElement - The DOM element to inject the content into.
  */
 export function renderProjectDetail(project, containerElement) {
-  // We will add a simple Markdown-like parser for the body text later if needed.
-  // For now, we'll just handle newlines.
-  const formattedBody = project.body.replace(/\n/g, '<br>');
+  // 2. Process the body text through the marked parser.
+  // The `breaks: true` option ensures single newlines are rendered as <br> tags.
+  const formattedBody = marked.parse(project.body || '', { breaks: true });
 
   containerElement.innerHTML = `
     <div class="project-detail">
@@ -69,7 +73,8 @@ export function renderProjectDetail(project, containerElement) {
         </aside>
 
         <main class="project-story">
-          <p>${formattedBody}</p>
+          <!-- 3. This div will now correctly render the parsed HTML -->
+          <div>${formattedBody}</div>
         </main>
       </div>
 
