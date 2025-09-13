@@ -1,16 +1,18 @@
 {
   "project_list": [
     {
-      "id": "simbiose",
+      "id": "Simbiose",
       "title": "Simbiose",
       "year": 2023,
-      "client": "OiFuturo",
+      "client": "OiFuturos",
       "role": "Tech Director",
       "category": "work",
       "tags": [
-        "software"
+        "Software",
+        "Touchdesigner",
+        "ShowControl"
       ],
-      "body": "# HEADING1\n\n[LINK](https://oifuturo.org.br/evento/simbiose-a-conexao-pelos-fungos/)\n\n![](/media/projects/1b4f2f9a-8341-4e68-a6dc-178194943f0b.jpg)",
+      "body": "Oi Futuro apresenta a exposição inédita “Simbiose – A conexão pelos fungos”. Com criação da Deeplab Project – estúdio que integra design e tecnologia para criar experiências – e curadoria de Eduardo Carvalho, a mostra traz de maneira lúdica a surpreendente e pouco conhecida imensidão do universo dos fungos.\n\n“Falar de fungos é abordar a coletividade, a conexão em redes, a transformação na natureza e pela natureza. Estamos entrelaçados, assim como os fungos em suas redes miceliais, responsáveis por nutrir cogumelos e facilitar a comunicação entre espécies vegetais. Essa grande membrana quimicamente sensível, que permite a conexão entre as partes, mesmo a centenas de metros de distância, é uma bela demonstração de como nossas ações têm o poder de impactar o todo, e como o todo nos impacta”, explica Carvalho, curador da mostra.\n\n“Simbiose é um pequeno recorte sobre essa vastidão que é o universo dos fungos. Ao produzirmos conteúdos como o apresentado na mostra, reforçamos nossa missão sobre o uso do digital do analógico para entreter e compartilhar conhecimento, abordando temas ligados à ciência e ao meio ambiente”, afirma o sócio-diretor da Deeplab Felipe Reif.",
       "thumbnail": {
         "type": "image",
         "path": "/media/projects/b311aa1c-53fa-4616-bccc-7406d61b1a64.jpg"
@@ -18,8 +20,21 @@
       "mediaGallery": [
         {
           "type": "image",
-          "path": "/media/projects/43ca454a-6252-48b4-8f3a-2294c8575142.jpg",
-          "caption": ""
+          "path": "/media/projects/1b4f2f9a-8341-4e68-a6dc-178194943f0b.jpg",
+          "caption": "",
+          "layout": "tall"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/82dd2c4e-9341-4484-8417-15b5b6a25abf.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/86463664-cec2-4756-8e0a-7cd807872274.jpg",
+          "caption": "",
+          "layout": "large"
         }
       ]
     }
