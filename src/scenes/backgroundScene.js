@@ -12,12 +12,22 @@ export default class BackgroundScene {
   }
 
   createParticles() {
-    const particleCount = window.innerWidth < 768 ? 1500 : 5000;
+    // --- START OF MODIFICATIONS ---
+
+    // Define mobile-specific parameters based on the existing logic
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 1500 : 5000;
+    const particleSize = isMobile ? 0.04 : 0.02;   // Particles are larger on mobile
+    const spreadFactor = isMobile ? 15 : 20;     // Particles are closer together on mobile
+
+    // --- END OF MODIFICATIONS ---
+
     const vertices = [];
     for (let i = 0; i < particleCount; i++) {
-      const x = (Math.random() - 0.5) * 20;
-      const y = (Math.random() - 0.5) * 20;
-      const z = (Math.random() - 0.5) * 20;
+      // Use the new spreadFactor to control distribution
+      const x = (Math.random() - 0.5) * spreadFactor;
+      const y = (Math.random() - 0.5) * spreadFactor;
+      const z = (Math.random() - 0.5) * spreadFactor;
       vertices.push(x, y, z);
     }
 
@@ -26,7 +36,7 @@ export default class BackgroundScene {
     
     const material = new THREE.PointsMaterial({
       color: 0x888888,
-      size: 0.02,
+      size: particleSize, // Use the new dynamic particleSize
       transparent: true,
       opacity: 0.5
     });
