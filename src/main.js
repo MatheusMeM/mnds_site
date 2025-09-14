@@ -3,16 +3,19 @@
 import './style.css';
 import SceneManager from './scenes/SceneManager.js';
 import BackgroundScene from './scenes/backgroundScene.js';
+import AboutScene from './scenes/aboutScene.js';
 import { fetchProjects } from './utils/projectLoader.js';
 import { router } from './utils/router.js';
 import { renderProjectGrid } from './components/projectGrid.js';
 import { renderProjectDetail } from './components/projectDetailView.js';
+import { renderAboutView } from './components/aboutView.js';
 import { initializeLazyLoading } from './utils/lazyLoader.js';
 
 // --- DOM Element Cache ---
 const canvas = document.querySelector('.webgl-canvas');
 const gridView = document.querySelector('#grid-view');
 const detailView = document.querySelector('#detail-view');
+const aboutView = document.querySelector('#about-view');
 const workGridContainer = document.querySelector('#work-grid-container');
 const header = document.querySelector('.main-header');
 const navLinks = document.querySelectorAll('.main-nav a');
@@ -20,6 +23,7 @@ const navLinks = document.querySelectorAll('.main-nav a');
 // --- Global State ---
 let allProjects = [];
 let currentPath = null; // CRITICAL FIX: State variable to track the current path
+let aboutSceneInstance = null; // Keep a reference to destroy it later
 
 // --- Animation Utility ---
 const transitionDuration = 300; // Must match --transition-speed in CSS
@@ -88,16 +92,39 @@ async function handleRouteChange() {
     } else {
       router.navigateTo('/');
     }
+  } else if (path === '/about') {
+    // Handle About page
+    const renderFn = () => {
+      // Cleanup old scene if it exists
+      if (aboutSceneInstance) {
+        aboutSceneInstance.destroy();
+        aboutSceneInstance = null;
+      }
+      
+      // Render the about text content
+      renderAboutView(aboutView);
+      
+      // Initialize the 3D scene
+      const container = document.querySelector('#about-interactive-container');
+      if (container) {
+        aboutSceneInstance = new AboutScene(container);
+        aboutSceneInstance.init();
+      }
+    };
+    transitionViews(currentView, aboutView, renderFn);
   } else {
+    // Handle grid views (work/projects)
+    // Cleanup about scene when leaving about page
+    if (aboutSceneInstance) {
+      aboutSceneInstance.destroy();
+      aboutSceneInstance = null;
+    }
+    
     const renderFn = () => {
       let projectsToRender;
       switch (path) {
         case '/projects':
           projectsToRender = allProjects.filter(p => p.category === 'project');
-          break;
-        case '/about':
-          projectsToRender = allProjects;
-          console.log("Navigated to About page (placeholder).");
           break;
         case '/':
         default:
@@ -137,8 +164,11 @@ function setupEventListeners() {
     });
     window.addEventListener('popstate', handleRouteChange);
     window.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !detailView.classList.contains('hidden')) {
-            router.navigateTo('/');
+        if (event.key === 'Escape') {
+            // Return home from any view when ESC is pressed
+            if (!detailView.classList.contains('hidden') || !aboutView.classList.contains('hidden')) {
+                router.navigateTo('/');
+            }
         }
     });
 }
