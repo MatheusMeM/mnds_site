@@ -12,7 +12,7 @@ export default class BackgroundScene {
   }
 
   createParticles() {
-    const particleCount = 5000;
+    const particleCount = window.innerWidth < 768 ? 1500 : 5000;
     const vertices = [];
     for (let i = 0; i < particleCount; i++) {
       const x = (Math.random() - 0.5) * 20;
