@@ -1,0 +1,43 @@
+/* src/styles/_notification.css */
+
+/*
+  Notification component styles following the project's design system.
+  Uses existing design tokens for consistency with the minimalist aesthetic.
+*/
+
+.notification {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: 4px;
+  z-index: 1000;
+  
+  font-size: var(--font-size-sm);
+  font-family: var(--font-family-primary);
+  color: var(--color-text-primary);
+  background-color: var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform var(--transition-speed) var(--easing-function), 
+              opacity var(--transition-speed) var(--easing-function);
+  pointer-events: none;
+}
+
+.notification.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.notification--error {
+  background-color: #5d1a1a; /* Subtle error color matching dark theme */
+  border-color: #ff4d4d;
+}
+
+.notification--info {
+  background-color: var(--color-border);
+  border-color: rgba(255, 255, 255, 0.2);
+}

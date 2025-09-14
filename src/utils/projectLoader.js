@@ -1,5 +1,7 @@
 // src/utils/projectLoader.js
 
+import { showNotification } from '../components/notification.js';
+
 /**
  * Fetches the portfolio projects data from the JSON file.
  * This module decouples the data source from the components that use it.
@@ -22,6 +24,10 @@ export async function fetchProjects() {
 
   } catch (error) {
     console.error("Failed to fetch or parse projects.json:", error);
+    
+    // Display user-friendly error notification
+    showNotification("Unable to load projects. Please check your connection and try again.");
+    
     // Returning an empty array prevents the app from crashing on data load failure.
     return [];
   }
