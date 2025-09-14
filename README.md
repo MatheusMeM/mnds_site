@@ -1,100 +1,267 @@
 # mnds-site Interactive Portfolio
 
-**Version:** 1.0.0
-**Status:** In Development
-
-An interactive portfolio for Matheus Mendes, built as a modern Single-Page Application (SPA). It features a real-time 3D background powered by Three.js, a minimalist design inspired by gmunk.com, and a fully data-driven content architecture.
-
-## Key Features
-
-- **SPA Routing:** A lightweight, client-side router provides seamless navigation between views without page reloads.
-- **Interactive 3D Background:** A performant WebGL canvas renders a persistent, animated particle system.
-- **Data-Driven Content:** All project information is managed via a Git-based headless CMS (Sveltia CMS).
-- **Component-Based UI:** The user interface is built from modular components.
-- **Responsive, Minimalist Design:** A GMUNK-inspired aesthetic with a professional design system.
+**Version:** 1.0.0  
+**Status:** Content-Ready (3 minor fixes recommended)  
+**Last Reviewed:** January 2025  
+**Technology Stack:** Vanilla JS, Three.js, Vite, Sveltia CMS, Cloudflare Pages
 
 ---
 
-## Content Management
+## 📖 Project Overview
 
-This project uses **Sveltia CMS** for content management, powered by a self-hosted authentication server on Cloudflare Workers. The admin panel is accessible at `/admin/` on the live site.
+An interactive portfolio for Matheus Mendes showcasing creative technology projects. Built as a modern Single-Page Application (SPA) with real-time 3D graphics, demonstrating professional frontend development practices.
 
--   **Workflow:** Log in with your GitHub account.
--   **Process:** Any changes made in the CMS will automatically generate a new commit in the `main` branch.
--   **Deployment:** This commit triggers a new build and deployment on Cloudflare Pages.
+**Design Philosophy:** Minimalist, GMUNK-inspired aesthetic with sophisticated interactions and smooth transitions.
 
 ---
 
-## File Structure & Architectural Overview
+## 🏗️ Architecture Overview
+
+### **Core Architecture Pattern: Component-Module Hybrid**
+
+The codebase follows a **functional component architecture** with **ES6 modules**, avoiding framework overhead while maintaining clean separation of concerns.
 
 ```
 mnds_site/
-├── public/
-│   ├── admin/
-│   ├── _redirects
-│   ├── data/
-│   │   └── projects.json
-│   └── media/
+├── public/                     # Static assets and CMS data
+│   ├── admin/                  # Sveltia CMS configuration
+│   ├── data/projects.json      # Content data source
+│   └── media/projects/         # Project images and videos
 ├── src/
-│   ├── main.js
-│   ├── style.css
-│   ├── components/
-│   ├── scenes/
-│   └── utils/
-├── index.html
-├── package.json
-└── roadmap.md
+│   ├── main.js                 # Application entry point & orchestration
+│   ├── style.css               # CSS module entry point
+│   ├── components/             # UI rendering functions
+│   │   ├── projectGrid.js      # Grid view component
+│   │   └── projectDetailView.js # Detail view component
+│   ├── scenes/                 # WebGL scene management
+│   │   ├── SceneManager.js     # WebGL renderer controller
+│   │   └── backgroundScene.js  # Particle system implementation
+│   ├── styles/                 # Modular CSS architecture
+│   │   ├── _variables.css      # Design system tokens
+│   │   ├── _base.css           # Global styles and resets
+│   │   ├── _header.css         # Navigation styles
+│   │   ├── _project-grid.css   # Grid layout styles
+│   │   ├── _project-detail.css # Detail view styles
+│   │   └── _transitions.css    # Animation and transition styles
+│   └── utils/                  # Core application utilities
+│       ├── projectLoader.js    # Data fetching and caching
+│       └── router.js           # SPA routing system
+├── index.html                  # Application shell
+├── package.json                # Dependencies and scripts
+└── roadmap.md                  # Development roadmap
 ```
 
 ---
 
-## Project Changelog & Summary
+## 🎯 Code Review Findings
 
-Development has proceeded through a phased roadmap, establishing a robust foundation before implementing core features.
+### **✅ Strong Architecture Elements**
 
--   **Current Status:** Phase 2 (Experience & Interaction) is in progress.
+#### **Modular CSS System**
+- Professional design token system in [`_variables.css`](src/styles/_variables.css)
+- Clean separation of contents SoC across 6 partial files
+- Responsive design with mobile-first approach
+- Sophisticated transitions and animations
 
--   **`refactor(css): modularize styles into partial files`**
-    -   Refactored the monolithic `style.css` into a modular, multi-file architecture.
-    -   Created partial files for variables, base styles, header, project grid, project detail, and transitions.
-    -   The main `style.css` now acts as an entry point, importing all partials.
-    -   Improved maintainability, readability, and AI agent performance for targeted CSS context.
+#### **Component Architecture**
+- Pure functional components with clear APIs
+- Single responsibility principle followed
+- Clean separation between presentation and logic
+- Intelligent media type handling (image/video/gif)
 
--   **`fix(ui): implement markdown parser for project body`**
-    -   Integrated the `marked.js` library to correctly render formatted text from the CMS.
-    -   Project descriptions now support headings, links, bold/italic text, and other Markdown features.
+#### **WebGL Integration**
+- Professional SceneManager pattern in [`SceneManager.js`](src/scenes/SceneManager.js)
+- Proper Three.js renderer setup with optimization flags
+- Clean scene lifecycle management
+- Extensible architecture for multiple 3D contexts
 
--   **`feat(cms): implement sveltia cms with self-hosted auth`**
-    -   Successfully integrated Sveltia CMS as the content management solution.
-    -   Deployed and configured a secure, self-hosted Cloudflare Worker for platform-agnostic GitHub authentication.
+#### **Routing System**
+- Category-aware URL generation (`/work/id`, `/project/id`)
+- Clean browser history integration
+- Lightweight SPA implementation without framework overhead
 
--   **`feat(webgl): implement core scene manager and v1 background scene`**
-    -   The application now has a live, animated 3D background powered by a modular `SceneManager`.
+### **⚠️ Issues Identified**
 
--   **`refactor(routing): implement category-aware routing and SPA navigation`**
-    -   The SPA router was made intelligent, generating URLs like `/work/...` or `/project/...` based on data from `projects.json`.
+#### **Issue #1: Hardcoded Performance Settings**
+**Location:** [`src/scenes/backgroundScene.js:15`](src/scenes/backgroundScene.js:15)
+```javascript
+const particleCount = 5000; // Same count for all devices
+```
+**Impact:** No device capability consideration for WebGL rendering
 
--   **`feat(ui): implement full project detail view`**
-    -   The project detail view now dynamically renders all project metadata, text, and media.
+#### **Issue #2: Silent Error Handling**
+**Location:** [`src/utils/projectLoader.js:23-27`](src/utils/projectLoader.js:23-27)
+```javascript
+} catch (error) {
+  console.error("Failed to fetch or parse projects.json:", error);
+  return []; // User sees empty grid with no explanation
+}
+```
+**Impact:** Network failures result in blank screens
 
--   **`feat(ui): implement animated view transitions`**
-    -   Added smooth fade-out/fade-in animations when navigating between the project grid and detail views.
-    -   Enhanced user experience with professional, polished transitions using CSS transitions and JavaScript orchestration.
-    -   Properly handles initial page load, direct URL navigation, and all navigation paths with appropriate animations.
-
--   **`feat(ui): implement active states for main navigation`**
-    -   Added visual feedback in the main navigation by highlighting the link corresponding to the user's current view.
-    -   Enhanced user experience with clear, immediate feedback about their location within the site.
-    -   Implemented with CSS classes and JavaScript orchestration in `main.js`.
+#### **Issue #3: No Progressive Loading**
+**Location:** Image rendering in components
+**Impact:** All gallery images load simultaneously
 
 ---
 
-## How to Run This Project
+## 🚀 Technology Stack & Dependencies
 
-1.  **Install Dependencies:**
-    ```bash
-    npm install
-    ```
-2.  **Run Development Server:**
-    ```bash
-    npm run dev
+### **Core Dependencies**
+- **three**: ^0.179.1 - WebGL 3D graphics library
+- **marked**: ^16.2.0 - Markdown parsing for project descriptions
+- **vite**: ^7.1.2 - Build tool and development server
+
+### **Development Environment**
+- **Node.js**: 18+ required
+- **Package Manager**: npm (lockfile present)
+- **Browser Support:** Modern browsers with ES6+ and WebGL support
+
+### **Build & Deployment**
+- **Build Tool:** Vite with ES module output
+- **Hosting:** Cloudflare Pages with automatic deployments
+- **CMS:** Sveltia CMS with GitHub backend
+- **Authentication:** PKCE-based GitHub OAuth via Cloudflare Workers
+
+---
+
+## 🔧 Development Workflow
+
+### **Getting Started**
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+### **Project Structure Guidelines**
+- **Components**: Pure functions in `/src/components/`
+- **Utilities**: Helper functions in `/src/utils/`
+- **Styles**: Modular CSS in `/src/styles/`
+- **Scenes**: WebGL scenes in `/src/scenes/`
+- **Data**: JSON files in `/public/data/`
+
+### **Code Style Standards**
+- ES6+ modules with explicit imports/exports
+- Functional programming patterns preferred
+- JSDoc comments for all public functions
+- CSS custom properties for theming
+- Mobile-first responsive design
+
+---
+
+## 📝 Content Management
+
+### **Sveltia CMS Integration**
+- **Access**: `/admin/` (requires GitHub authentication)
+- **Workflow**: Edit → Commit → Auto-deploy
+- **Data Structure**: Validated through [`config.yml`](public/admin/config.yml)
+- **Media Management**: Automatic optimization and CDN delivery
+
+### **Project Data Schema**
+```json
+{
+  "id": "string (unique identifier)",
+  "title": "string",
+  "year": "number",
+  "client": "string",
+  "role": "string",
+  "category": "work | project",
+  "tags": ["array", "of", "strings"],
+  "body": "markdown string",
+  "thumbnail": {
+    "type": "image | video | gif",
+    "path": "/media/projects/filename.ext"
+  },
+  "mediaGallery": [
+    {
+      "type": "image | video | gif",
+      "path": "/media/projects/filename.ext",
+      "caption": "optional string",
+      "layout": "standard | wide | tall | large | full-bleed"
+    }
+  ]
+}
+```
+
+---
+
+## 🔒 Security Considerations
+
+### **Current Security Measures**
+- **HTTPS Enforcement**: Via Cloudflare Pages
+- **Content Security**: GitHub-based review process for all content
+- **Authentication**: Secure PKCE OAuth flow for CMS access
+- **Environment Variables**: Proper secrets management via Vite
+
+### **Security Recommendations**
+- Regular `npm audit` for dependency vulnerabilities
+- Content sanitization review for markdown rendering
+- Runtime validation for CMS data structure
+
+---
+
+## 📈 Quick Fixes Recommended
+
+Based on code review, these 3 issues can be addressed quickly:
+
+### **Fix #1: Responsive Particles**
+```javascript
+// In src/scenes/backgroundScene.js:15
+const particleCount = window.innerWidth < 768 ? 1500 : 5000;
+```
+
+### **Fix #2: Error User Feedback**
+```javascript
+// In src/utils/projectLoader.js - add user notification
+} catch (error) {
+  console.error("Failed to fetch or parse projects.json:", error);
+  // Add: showErrorMessage("Unable to load projects. Please refresh.");
+  return [];
+}
+```
+
+### **Fix #3: Basic Lazy Loading** (Optional)
+Implement intersection observer for gallery images to improve perceived performance.
+
+---
+
+## 🎯 Future AI Agent Instructions
+
+**For future code reviews or modifications:**
+
+1. **Architecture Preservation**: Maintain the functional component pattern and modular CSS system
+2. **Performance Focus**: Any WebGL changes should consider device capabilities
+3. **Error Handling**: Ensure user feedback for all failure scenarios
+4. **State Management**: Current global state in [`main.js`](src/main.js) is functional for portfolio scale
+
+**Key Files for AI Context:**
+- [`src/main.js`](src/main.js) - Application orchestration and routing logic
+- [`src/scenes/SceneManager.js`](src/scenes/SceneManager.js) - WebGL lifecycle management
+- [`src/utils/router.js`](src/utils/router.js) - SPA routing implementation
+- [`src/styles/_variables.css`](src/styles/_variables.css) - Design system tokens
+- [`public/data/projects.json`](public/data/projects.json) - Content data structure
+
+**Architecture Decisions to Preserve:**
+- Modular CSS with custom properties
+- Functional component patterns
+- Scene manager abstraction for WebGL
+- Git-based CMS workflow
+
+---
+
+## 📊 Current Status
+
+**Ready for Content Addition:** The portfolio has solid architectural foundations and professional implementation patterns. The 3 identified issues are minor and don't prevent content creation or deployment.
+
+**Next Steps:** Add project content via CMS, then optionally implement the quick fixes for enhanced reliability.
+
+This codebase demonstrates strong technical foundations suitable for professional portfolio use and job applications.

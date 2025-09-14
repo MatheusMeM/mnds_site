@@ -1,77 +1,111 @@
-# Project Roadmap: mnds-site Interactive Portfolio (v2.0)
+# mnds-site Portfolio: Content-Ready Sprint
 
-This architectural blueprint outlines the development of the `mnds-site` portfolio. It prioritizes a robust foundation, early risk mitigation, and continuous integration of non-functional requirements. This is a living document.
+**Mission:** Get this portfolio content-ready for job applications ASAP  
+**Current Status:** Functional portfolio with 3 identified technical issues  
+**Target:** Reliable, fast, professional portfolio with minimal fixes
+
+This is a **sprint-to-content** roadmap focused on fixing only the issues identified through code review that could affect user experience. No major refactors, no enterprise features - just addressing the specific technical gaps found.
 
 **Legend:**
-- `[x]` - Completed
-- `[ ]` - To Do
-- `E`: Effort (Points) | `I`: Impact | `R`: Risk
+- `[x]` - Completed  
+- `[!]` - Issue identified in code review  
+- `[ ]` - Future enhancement
 
 ---
 
-### **Phase 0: Architectural Blueprint & Foundation**
+## 🎯 Current Reality Check
 
-*Objective: Establish the project's core architecture, tooling, and non-functional requirements. A failure in this phase creates technical debt that compounds over time.*
+**What Works Right Now:**
+- ✅ Portfolio loads and displays projects
+- ✅ Navigation between grid and detail views works  
+- ✅ WebGL background renders with particle system
+- ✅ CMS integration functional for content updates
+- ✅ Professional design system and responsive layout
+- ✅ Modular CSS architecture with clean components
+- ✅ Three.js integration with SceneManager pattern
 
-- [x] **Establish Project Environment & Tooling** `[E:3, I:High, R:Low]`
-- [x] **Architect Data Layer & "API" Contract** `[E:2, I:High, R:Low]`
-- [x] **Define Design System & Visual Language** `[E:3, I:High, R:Low]`
-- [x] **Set Up Core Scene Architecture** `[E:5, I:High, R:Med]`
-- [x] **Implement Sveltia CMS for Content Management** `[E:3, I:High, R:Med]`
-- [x] **Establish Performance Budget** `[E:1, I:Med, R:Low]`
+**Issues Identified in Code Review:**
 
----
+#### **[!] Issue #1: Hardcoded Particle Count**
+**Code Location:** `src/scenes/backgroundScene.js:15`
+**Current Code:** `const particleCount = 5000;`
+**Issue:** Same particle count renders on all devices regardless of capability
+**Evidence:** No device detection or responsive particle rendering implemented
 
-### **Phase 1: Core Implementation (The Visible MVP)**
+#### **[!] Issue #2: Silent Error Handling**
+**Code Location:** `src/utils/projectLoader.js:23-27`
+**Current Code:** 
+```javascript
+} catch (error) {
+  console.error("Failed to fetch or parse projects.json:", error);
+  return [];
+}
+```
+**Issue:** Network failures result in empty grid with no user explanation
+**Evidence:** Returns empty array without user notification on fetch failure
 
-*Objective: Build the primary, visible components of the site based on the architectural decisions from Phase 0.*
-
-- [x] **Implement Static UI & Layout** `[E:3, I:High, R:Low]`
-- [x] **Develop Dynamic Project Grid** `[E:3, I:High, R:Low]`
-- [x] **Develop Background Scene v1** `[E:5, I:High, R:High]`
-- [x] **Orchestrate Application Entry Point** `[E:2, I:High, R:Low]`
-- [x] **Implement SPA Routing for Project Pages** `[E:3, I:High, R:Low]`
-- [x] **Implement Full Project Detail View** `[E:3, I:Med, R:Low]`
-
----
-
-### **Phase 2: Experience & Interaction (The "Wow" Factor)**
-
-*Objective: Layer in the signature interactive elements and polish the user journey.*
-
-- [ ] **Enhance Project Detail View** `[E:5, I:High, R:Low]`
-    - [x] **`fix`**: Implement Markdown parser (`marked.js`) to correctly render body text.
-    - [ ] **`feat`**: Implement an automatic, responsive grid layout for the media gallery.
-
-- [ ] **Refine Navigation & Flow** `[E:2, I:Med, R:Low]`
-    - `[x]` **`feat`**: Implement active states for the main navigation links to indicate the current page.
-    - `[x]` **`style`**: Animate the entry/exit transitions between the grid and detail views.
-
-- [ ] **Develop "About" Interactive Scene** `[E:8, I:High, R:High]`
-    - `[ ]` `feat`: Build the `aboutScene.js` with a 3D model and mouse-controlled point light.
-    - `[ ]` `perf`: Aggressively optimize geometry, materials, and lighting.
-    - **QA Gate:** Verify 60fps performance on target desktop and mobile devices.
+#### **[!] Issue #3: No Lazy Loading**
+**Code Location:** `src/components/projectDetailView.js` and `src/components/projectGrid.js`
+**Issue:** All images load immediately when components render
+**Evidence:** No intersection observer or progressive loading implementation found
 
 ---
 
-### **Phase 3: Hardening & Extensibility (The Professional Polish)**
+## 🚀 Content-Ready Fixes (Addressing Code Review Findings)
 
-*Objective: Transform the functional site into a production-ready, robust, and accessible application.*
+### **Fix #1: Responsive Particle System**
+**Target:** `src/scenes/backgroundScene.js:15`
+**Change:** Replace hardcoded count with device-responsive logic
+```javascript
+// Current
+const particleCount = 5000;
 
-- [ ] **Implement Performance Optimizations** `[E:3, I:High, R:Med]`
-    - `[ ]` **`perf`**: Implement lazy loading for media gallery images and videos to improve initial page load.
+// Proposed  
+const particleCount = window.innerWidth < 768 ? 1500 : 5000;
+```
 
-- [ ] **Implement Preloader & Asset Management** `[E:3, I:Med, R:Med]`
-- [ ] **Conduct Accessibility (a11y) Audit & Remediation** `[E:5, I:High, R:Med]`
-- [ ] **Implement Internationalization (i18n)** `[E:5, I:Med, R:Low]`
-- [ ] **Final Performance & QA Sweep** `[E:3, I:High, R:Low]`
+### **Fix #2: User Feedback for Errors**
+**Target:** `src/utils/projectLoader.js:23-27`
+**Change:** Add user notification instead of silent failure
+```javascript
+} catch (error) {
+  console.error("Failed to fetch or parse projects.json:", error);
+  // Add user notification here
+  return [];
+}
+```
+
+### **Fix #3: Basic Lazy Loading**
+**Target:** `src/components/projectDetailView.js` and related image rendering
+**Change:** Implement intersection observer for gallery images
+**Priority:** Optional - can be done after content addition
 
 ---
 
-### **Backlog & Future Ideas**
+## 📝 Post-Content Enhancements
 
-*A collection of potential future enhancements once the core project is complete.*
+### **Technical Improvements (Future)**
+- [ ] TypeScript integration for type safety
+- [ ] Test suite for regression prevention  
+- [ ] Performance monitoring implementation
+- [ ] Accessibility audit and improvements
+- [ ] Advanced WebGL interactions
 
-- [ ] `idea`: Experiment with more advanced shaders in the scenes.
-- [ ] `idea`: Implement project filtering based on tags.
-- [x] `refactor(css): modularize styles into partial files`
+### **Architectural Considerations (Future)**
+- [ ] State management refinement (current global state functional for portfolio scale)
+- [ ] Build optimization and code splitting
+- [ ] Service worker for offline functionality
+- [ ] Analytics integration
+
+---
+
+## 🎯 Immediate Action Plan
+
+**Step 1:** Fix the 3 identified issues (estimated 2-3 hours total)
+**Step 2:** Test functionality across devices  
+**Step 3:** Begin content addition via CMS
+**Step 4:** Deploy and share with confidence
+
+**Reality Check:** The portfolio architecture is solid. These fixes address specific gaps found in code review to ensure reliable operation across different scenarios.
+
+This roadmap focuses on facts from actual code analysis rather than assumptions about user behavior or performance impacts.
