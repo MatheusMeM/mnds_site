@@ -1,22 +1,21 @@
 /* src/styles/_about.css */
 
 .about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-xl);
-  align-items: center;
-  height: 100vh;
+  display: block;
   padding: var(--spacing-lg);
+  padding-right: 50vw; /* Make space for fixed interactive element */
   box-sizing: border-box;
+  min-height: 200vh; /* Allow for scrolling */
 }
 
 .about-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   max-width: 600px;
   color: var(--text-primary);
   line-height: 1.6;
+  padding-top: 10vh;
 }
 
 .about-text h1 {
@@ -45,9 +44,16 @@
 }
 
 .about-interactive {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  position: relative;
+  width: 50vw;
+  height: 100vh;
+  
+  /* --- FIXED VIEWPORT LOGIC --- */
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+
+  /* --- Flex centering --- */
   display: flex;
   align-items: center;
   justify-content: center;

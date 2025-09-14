@@ -224,6 +224,7 @@ export default class AboutScene {
         0.05
       );
       this.dodecahedron.rotation.z += 0.002;
+      this.dodecahedron.rotation.y += 0.05;
     
       // Update shader material time uniform
       if (this.dodecahedron.material && this.dodecahedron.material.uniforms) {

@@ -13,8 +13,12 @@ export function renderAboutView(container) {
   }
 
   const aboutContent = `
-    <h2>Creative Tech Director engineering experiences where technology becomes tangible poetry</h2>
+    <h1>Creative Tech Director </h1>
 
+    <h2>engineering experiences where technology becomes tangible poetry</h2>
+
+    <p><br/></p>
+    
     <p>I exist at the intersection where electrical engineering meets human wonder—building systems that transform abstract concepts into interactive realities. My foundation in electronics and embedded systems drives a practice centered on making the invisible visible, the digital physical, the complex beautifully simple. Much like the technology I create, my approach is both methodical and mysteriously intuitive.</p>
 
     <p>The throughline in my work utilizes real-time computer vision, edge AI, and custom hardware to create experiences that respond to human presence and movement. My signature approach blends rigorous engineering with experimental discovery—reducing motion capture costs by 96% through algorithmic innovation, deploying interactive installations across cultural institutions serving over one million visitors, coordinating technical infrastructure that connects 700K+ people in shared moments of technological transcendence.</p>
