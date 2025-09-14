@@ -14,8 +14,6 @@ export default class AboutScene {
     this.renderer = null;
     this.composer = null;
     this.dodecahedron = null;
-    this.particles = null;
-    
     // Animation and interaction
     this.animationId = null;
     this.resizeObserver = null;
@@ -32,7 +30,6 @@ export default class AboutScene {
     this.createScene();
     this.createCamera();
     this.createDodecahedron();
-    this.createParticleSystem();
     this.setupEventListeners();
     this.setupResizeObserver();
     this.startAnimationLoop();
@@ -162,78 +159,6 @@ export default class AboutScene {
     this.scene.add(this.dodecahedron);
   }
 
-  createParticleSystem() {
-    // CRITICAL: Ensure the dodecahedron is created first
-    if (!this.dodecahedron) {
-        console.error("Dodecahedron must be created before the particle system.");
-        return;
-    }
-
-    // Use the vertices from our NEW procedural geometry for a perfect match
-    const positions = this.dodecahedron.geometry.attributes.position.array;
-    
-    // Create particle geometry
-    const particleGeometry = new THREE.BufferGeometry();
-    
-    // Add random scatter directions for each vertex
-    const scatterDirections = [];
-    const originalPositions = [];
-    
-    for (let i = 0; i < positions.length; i += 3) {
-      // Store original positions
-      originalPositions.push(positions[i], positions[i + 1], positions[i + 2]);
-      
-      // Generate random scatter direction
-      const direction = new THREE.Vector3(
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10,
-        (Math.random() - 0.5) * 10
-      );
-      scatterDirections.push(direction.x, direction.y, direction.z);
-    }
-    
-    particleGeometry.setAttribute('position', new THREE.Float32BufferAttribute(originalPositions, 3));
-    particleGeometry.setAttribute('originalPosition', new THREE.Float32BufferAttribute(originalPositions, 3));
-    particleGeometry.setAttribute('scatterDirection', new THREE.Float32BufferAttribute(scatterDirections, 3));
-    
-    // The particle material shader remains largely the same, but we reference 'position' directly
-    const particleMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        uProgress: { value: 0.0 },
-        uTime: { value: 0.0 },
-      },
-      vertexShader: `
-        attribute vec3 scatterDirection;
-        uniform float uProgress;
-        uniform float uTime;
-        
-        void main() {
-          // Animate from original position to scattered position
-          vec3 pos = position + scatterDirection * uProgress;
-          
-          // Add some organic floating motion
-          pos.y += sin(uTime * 0.5 + position.x * 2.0) * 0.2 * uProgress;
-          
-          vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
-          gl_Position = projectionMatrix * mvPosition;
-          gl_PointSize = (2.0 / -mvPosition.z) * (1.0 - uProgress); // Make points smaller as they expand
-        }
-      `,
-      fragmentShader: `
-        void main() {
-          gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
-        }
-      `,
-      transparent: true,
-      blending: THREE.AdditiveBlending
-    });
-    
-    this.particles = new THREE.Points(particleGeometry, particleMaterial);
-    this.particles.visible = false;
-    this.scene.add(this.particles);
-  }
-
-
   setupEventListeners() {
     // Mouse movement tracking
     this.container.addEventListener('mousemove', this.onMouseMove);
@@ -252,8 +177,8 @@ export default class AboutScene {
     this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     
-    // Calculate target rotation based on mouse position
-    this.targetRotation.x = this.mouse.y * 0.5;
+    // CORRECTED: Negate the mouse.y input for natural-feeling rotation
+    this.targetRotation.x = -this.mouse.y * 0.5;
     this.targetRotation.y = this.mouse.x * 0.5;
   }
 
@@ -261,52 +186,6 @@ export default class AboutScene {
     if (this.isAnimating) return;
     
     this.startShatterAnimation();
-  }
-
-  startShatterAnimation() {
-    this.isAnimating = true;
-    
-    // Hide dodecahedron, show particles
-    this.dodecahedron.visible = false;
-    this.particles.visible = true;
-    
-    // Animate shatter (0 -> 1)
-    this.animateProgress(0, 1, 1500, () => {
-      // After shatter, animate reform (1 -> 0)
-      this.animateProgress(1, 0, 1500, () => {
-        // Reset to original state
-        this.dodecahedron.visible = true;
-        this.particles.visible = false;
-        this.isAnimating = false;
-      });
-    });
-  }
-
-  animateProgress(from, to, duration, onComplete) {
-    const start = performance.now();
-    const initialValue = from;
-    const delta = to - from;
-    
-    const animate = (currentTime) => {
-      const elapsed = currentTime - start;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Smooth easing function
-      const easedProgress = progress < 0.5 
-        ? 2 * progress * progress 
-        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-      
-      const currentValue = initialValue + delta * easedProgress;
-      this.particles.material.uniforms.uProgress.value = currentValue;
-      
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else if (onComplete) {
-        onComplete();
-      }
-    };
-    
-    requestAnimationFrame(animate);
   }
 
   onResize() {
@@ -350,10 +229,6 @@ export default class AboutScene {
       if (this.dodecahedron.material && this.dodecahedron.material.uniforms) {
         this.dodecahedron.material.uniforms.uTime.value = time;
       }
-    }
-    
-    if (this.particles && this.particles.material.uniforms) {
-      this.particles.material.uniforms.uTime.value = time;
     }
     
     this.renderer.render(this.scene, this.camera);
