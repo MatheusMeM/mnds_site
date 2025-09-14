@@ -7,6 +7,7 @@ import { fetchProjects } from './utils/projectLoader.js';
 import { router } from './utils/router.js';
 import { renderProjectGrid } from './components/projectGrid.js';
 import { renderProjectDetail } from './components/projectDetailView.js';
+import { initializeLazyLoading } from './utils/lazyLoader.js';
 
 // --- DOM Element Cache ---
 const canvas = document.querySelector('.webgl-canvas');
@@ -80,6 +81,8 @@ async function handleRouteChange() {
       const renderFn = () => {
         renderProjectDetail(project, detailView);
         detailView.dataset.currentProject = projectId;
+        // Initialize lazy loading for the rendered media gallery
+        initializeLazyLoading(detailView);
       };
       transitionViews(currentView, detailView, renderFn);
     } else {

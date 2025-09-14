@@ -17,7 +17,7 @@ function createMediaGalleryItem(media) {
     case 'video':
       return `
         <figure class="gallery-item ${layoutClass}">
-          <video src="${media.path}" controls playsinline></video>
+          <video class="lazy" data-src="${media.path}" controls playsinline muted loop></video>
           ${captionHTML}
         </figure>
       `;
@@ -25,7 +25,7 @@ function createMediaGalleryItem(media) {
     case 'gif':
       return `
         <figure class="gallery-item ${layoutClass}">
-          <img src="${media.path}" alt="${media.caption || 'Project image'}">
+          <img class="lazy" data-src="${media.path}" alt="${media.caption || 'Project image'}">
           ${captionHTML}
         </figure>
       `;
