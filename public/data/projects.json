@@ -2,7 +2,7 @@
   "project_list": [
     {
       "id": "Simbiose",
-      "title": "Simbiose — The Connection Through Fungi",
+      "title": "Simbiose",
       "year": 2023,
       "client": "Oi Futuro",
       "role": "Developer",
@@ -12,29 +12,53 @@
         "Touchdesigner",
         "ShowControl"
       ],
-      "body": "## Simbiose — The Connection Through Fungi\n\n\n\n\n\nOi Futuro, Rio de Janeiro — early 2023\n\n\n\n\n\n\n\n\n\n\n\n\nAn immersive, free, all‑ages exhibition that invited visitors to wander through the hidden intelligence of fungi. The space combined projection‑mapped visuals, responsive light, and an enveloping soundscape to illustrate how fungal networks communicate, recycle, and sustain life. Instead of a didactic tech demo, the room behaved like an ecosystem: media, light, and sound breathed together, rising and falling in a shared rhythm—alive, interconnected, and quietly powerful.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### My role\n\n\n\n\n\nI led show‑control software and technical direction for systems integration. In practice, that meant designing the control architecture, programming the real‑time engine in TouchDesigner, and ensuring projection, lighting, and audio stayed precisely in sync from the first boot of the day to the last visitor at night.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### How it worked (in plain language)\n\n\n\n\n\nThe exhibition ran on a single, cohesive control brain: TouchDesigner. From there, we mapped the projection surface, drove the audio bed, and orchestrated the lighting so every cue felt organic and synchronized. Networking mattered: sACN carried both the high‑density pixel data to an Advatek controller for WS2812 arrays and the DMX universes that fed the LED PARs and pixel battens (via sACN‑to‑DMX nodes). A unified clock and cue logic kept everything aligned—video pulses, color shifts, and sonic textures locked together, so visitors perceived one coherent organism rather than separate systems.\n\n\n\n\n\n\n\n\n\n\n\n\nOperationally, the show started itself. Each morning, the system booted unattended, launched the right components in the right order, verified device presence, and settled into the opening scene. Staff didn’t need to “drive” the rig—only to power the room safely and check status. If something went offline, health scripts guided a quick recovery path. Reliability wasn’t an afterthought; it was part of the design.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### The visitor experience\n\n\n\n\n\nPeople entered a dim, textured environment: a large projection‑mapped wall revealed time‑lapse growth, spore bursts, and branching mycelium; peripheral LEDs extended those patterns into the room, like hyphae threading through the space. Low‑frequency audio swelled as visuals intensified; micro‑details shimmered when the soundtrack thinned. Kids pointed at color ripples; adults lingered at edge blends, tracing the seamless image while the light grid “listened” and replied. The result was calm, curious, and surprisingly emotive—fungi, not as background, but as a living narrative you could feel.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### Responsibilities (highlights)\n\n\n\n\n\n- Show‑control architecture and integration across video, lighting, and audio\n- TouchDesigner programming for media playback, real‑time sync, cueing, and automation\n- Projection mapping and edge‑blending (Kantan Mapper inside TouchDesigner)\n- Lighting control:\n    - sACN to Advatek node for WS2812 pixel arrays and DMX512 output.\n- Reliability and operations: unattended startup, health checks, recovery steps, and staff training\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### Technical notes (concise)\n\n\n\n\n\n- TouchDesigner as the single show‑control engine: media, lighting, audio, timing, and state management in one place\n- Projection mapping and warping handled via Kantan Mapper; GPU‑direct outputs to the projectors\n- Lighting data split at the network layer:\n    - High‑bandwidth pixel streams over sACN to an Advatek controller (WS2812)\n    - Fixture control (LED PARs, pixel battens) as sACN universes bridged to DMX512\n- Unified cue stack and clocking ensured per‑frame alignment of media, color, and sound\n- Automated daily startup with integrity checks; friendly shutdown/startup procedures for the on‑site team\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### Impact\n\n\n\n\n\n- A tightly synchronized, low‑maintenance installation that ran daily with minimal intervention\n- A clear, intuitive narrative where tech stayed invisible and the fungal story took the spotlight\n- Robust automation reduced support overhead; training empowered staff and improved uptime\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n### Links\n\n\n\n\n\n- Oi Futuro (exhibition): [![Ícone do site](https://app.adapta.one/_next/image?url=https%3A%2F%2Fwww.google.com%2Fs2%2Ffavicons%3Fdomain%3Doifuturo.org.br%26sz%3D16&w=32&q=75)oifuturo.org.br](https://oifuturo.org.br/evento/seminario-simbiose-a-conexao-pelos-fungos/)",
+      "body": "## Simbiose — The Connection Through Fungi\n\nOi Futuro, Rio de Janeiro — early 2023\n\nAn immersive, free, all‑ages exhibition that invited visitors to wander through the hidden intelligence of fungi. The space combined projection‑mapped visuals, responsive light, and an enveloping soundscape to illustrate how fungal networks communicate, recycle, and sustain life. Instead of a didactic tech demo, the room behaved like an ecosystem: media, light, and sound breathed together, rising and falling in a shared rhythm—alive, interconnected, and quietly powerful.\n\n## My role\n\nI led show‑control software and technical direction for systems integration. In practice, that meant designing the control architecture, programming the real‑time engine in TouchDesigner, and ensuring projection, lighting, and audio stayed precisely in sync from the first boot of the day to the last visitor at night.\n\n## How it worked\n\nThe exhibition ran on a single, cohesive control brain: **TouchDesigner**. From there, we mapped the projection surface, drove the audio, and orchestrated the lighting so every cue felt organic and synchronized. Networking mattered: sACN carried both the high‑density pixel data to an Advatek controller for WS2812 arrays and the DMX universes that fed the LED PARs and pixel battens. A unified clock and cue logic kept everything aligned—video pulses, color shifts, and sonic textures locked together, so visitors perceived one coherent organism rather than separate systems.\n\nOperationally, the show started itself. Each morning, the system booted unattended, launched the right components in the right order, verified device presence, and settled into the opening scene. Staff didn’t need to “drive” the rig—only to power the room safely and check status. If something went offline, health scripts guided a quick recovery path. Reliability wasn’t an afterthought; it was part of the design.\n\n## Responsibilities\n\n- Show‑control architecture and integration across video, lighting, and audio\n- TouchDesigner programming for media playback, real‑time sync, cueing, and automation\n- Projection mapping and edge‑blending (Kantan Mapper inside TouchDesigner)\n- Lighting control:\n    - sACN to Advatek node for WS2812 pixel arrays and DMX512 output.\n- Reliability and operations: unattended startup, health checks, recovery steps, and staff training\n\n\n## Technical notes \n\n- TouchDesigner as the single show‑control engine: media, lighting, audio, timing, and state management in one place\n- Projection mapping and warping handled via Kantan Mapper; GPU‑direct outputs to the projectors\n- Lighting data split at the network layer:\n    - High‑bandwidth pixel streams over sACN to an Advatek controller (WS2812)\n    - Fixture control (LED PARs, pixel battens) as sACN universes bridged to DMX512\n- Unified cue stack and clocking ensured per‑frame alignment of media, color, and sound\n- Automated daily startup; friendly shutdown/startup procedures for the on‑site team\n\n### \n\n### Links\n\n- Oi Futuro (exhibition): [![Ícone do site](https://app.adapta.one/_next/image?url=https%3A%2F%2Fwww.google.com%2Fs2%2Ffavicons%3Fdomain%3Doifuturo.org.br%26sz%3D16&w=32&q=75)oifuturo.org.br](https://oifuturo.org.br/evento/seminario-simbiose-a-conexao-pelos-fungos/)",
       "thumbnail": {
         "type": "image",
-        "path": "thumbnail.jpg"
+        "path": "media/projects/809f2ee1b784/b311aa1c-53fa-4616-bccc-7406d61b1a64.jpg"
       },
       "mediaGallery": [
         {
           "type": "image",
-          "path": "gallery-01.jpg",
+          "path": "media/projects/9b69d978d0ba/a6adc692-5482-4a3c-85f4-56dafaf5bba7.jpg",
           "caption": "",
           "layout": "tall"
         },
         {
           "type": "image",
-          "path": "gallery-02.jpg",
+          "path": "media/projects/19b4ac77d8cb/40a13765-171f-47e6-8cb0-f977fe6f0646.jpg",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "gallery-03.jpg",
+          "path": "media/projects/fff8032a1a11/8ba08420-9867-4c8f-ac4a-dc8d3f38f1bf.jpg",
           "caption": "",
-          "layout": "large"
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "media/projects/356b306f71c3/82dd2c4e-9341-4484-8417-15b5b6a25abf.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "media/projects/be27337fc634/b1369be7-dd69-4d80-a999-e7ea286a9cc2.jpg",
+          "caption": "",
+          "layout": "full-bleed"
+        },
+        {
+          "type": "image",
+          "path": "media/projects/7fa8c2cc0e17/acea7f70-d2ea-4779-8b6a-493eccab7927.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "media/projects/82050d97dd50/483a60e8-a673-459b-8f78-03d622cb6eaa.jpg",
+          "caption": "",
+          "layout": "wide"
         }
       ]
     }
