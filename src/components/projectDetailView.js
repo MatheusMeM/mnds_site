@@ -34,7 +34,7 @@ function createMediaGalleryItem(media) {
     case 'video':
       return `
         <figure class="gallery-item ${layoutClass}">
-          <video class="lazy" data-src="${media.path}" controls playsinline muted loop></video>
+          <video class="lazy" data-src="${media.path}" controls playsinline muted loop autoplay></video>
           ${captionHTML}
         </figure>
       `;

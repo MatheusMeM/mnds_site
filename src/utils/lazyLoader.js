@@ -40,8 +40,8 @@ const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
           element.classList.add('loaded');
           element.removeAttribute('data-src');
           
-          // Start autoplay only if video is in viewport and conditions are met
-          if (shouldAutoplayVideo()) {
+          // Start autoplay for videos that have the autoplay attribute when they become visible
+          if (element.hasAttribute('autoplay') && shouldAutoplayVideo(element)) {
             element.play().catch(error => {
               console.warn('Video autoplay failed:', error);
               // Fallback: show poster or first frame
@@ -103,21 +103,34 @@ export function initializeLazyLoading(containerElement) {
  */
 /**
  * Determines if video autoplay should be enabled based on performance conditions.
+ * @param {HTMLVideoElement} videoElement - The video element to check autoplay for.
  * @returns {boolean} Whether autoplay should be enabled.
  */
-function shouldAutoplayVideo() {
-  // Check for reduced motion preference
+function shouldAutoplayVideo(videoElement) {
+  // Check for reduced motion preference - always respect this
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     return false;
   }
   
-  // Check for mobile device or slow connection
+  // For gallery videos (those with controls and autoplay attributes),
+  // allow autoplay on scroll even on mobile devices
+  const isGalleryVideo = videoElement.hasAttribute('controls') &&
+                        videoElement.hasAttribute('autoplay');
+  
+  if (isGalleryVideo) {
+    // Only block autoplay on very slow connections for gallery videos
+    const isSlowConnection = navigator.connection &&
+      navigator.connection.effectiveType === 'slow-2g';
+    return !isSlowConnection;
+  }
+  
+  // For hero videos and other autoplay videos, apply stricter conditions
   const isMobile = window.innerWidth <= 768;
   const isSlowConnection = navigator.connection &&
     (navigator.connection.effectiveType === 'slow-2g' ||
      navigator.connection.effectiveType === '2g');
   
-  // Disable autoplay on mobile or slow connections
+  // Disable autoplay on mobile or slow connections for non-gallery videos
   if (isMobile || isSlowConnection) {
     return false;
   }
