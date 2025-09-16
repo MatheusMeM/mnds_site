@@ -143,38 +143,55 @@
       ]
     },
     {
-      "id": "petrobras-70anos",
-      "title": "Petrobras 70 Years",
-      "year": 2023,
-      "client": "Petrobras",
-      "role": "Creative Technologist",
+      "id": "tiger-beer",
+      "title": "Tiger Jackpot",
+      "year": 2022,
+      "client": "Isso Não É Uma Festa",
+      "role": "Technical Director",
       "category": "work",
       "tags": [
-        "Touchdesigner",
-        "Kinect",
-        "Interactive Installation"
+        "Python",
+        "Embedded Electronics"
       ],
-      "body": "Interactive Particle Installation (2023)\n\n## About \n\nCommissioned by V3A, I proposed and developed an interactive LED installation for Petrobras’s 70th‑anniversary exhibition. A Kinect V2 captured visitors’ body movement to drive a real‑time particle system rendered on a P2.9 LED wall—evoking energy, flow, and scale through responsive motion and color.\n\nPetrobras is Brazil’s state‑controlled oil and gas company and one of Latin America’s most influential industrial brands. Its 70th‑anniversary exhibition in 2023 celebrated the company’s history and innovation with large‑scale public‑facing experiences.\n\n## My role\n\nCreative Technologist and Lead Developer (proposal + build). I designed the interaction model, authored the visual assets, built the particle engine, integrated hardware and software, and delivered onsite calibration and support.\n\n## How it worked \n\nKinect V2 depth and skeletal data fed normalized vectors into TouchDesigner. A GPU‑accelerated particle system (instancing/feedback) reacted to proximity, velocity, and gesture via attraction, turbulence, and trail‑decay behaviors. Output was mapped pixel‑accurately to the P2.9 LED wall through the processor for crisp, low‑latency playback. An idle mode ran when no viewer was detected.\n\n## Responsibilities\n\n- Creative tech and technical development (proposal → delivery)\n- Particle system design and content creation\n- Kinect integration, data smoothing, and interaction tuning\n- LED wall mapping, calibration, and onsite support\n\n## Technical notes\n\n- Kinect V2 depth/skeleton tracking with filtering for jitter and occlusion\n- TouchDesigner for real‑time simulation, control, and render\n- Pixel‑accurate mapping to a 2.9 mm pitch LED wall (optimized for viewing distance)\n- Fail‑safe/idle loop when no audience is present; no image storage (privacy‑safe)\n- Low‑latency signal chain to preserve responsiveness\n\n## Technologies\n\n- Kinect V2\n- TouchDesigner\n- P2.9 LED wall + processor",
+      "body": "## Tiger Beer — The Sky‑High Jackpot (2022)\n\nCreative Technologist & Developer\n\n### Overview\n\nFor Tiger Beer at the event “Isso não é uma festa” (“This is not a party”), I delivered a large‑scale interactive slot machine whose “screen” was a high‑resolution LED wall mounted on the long side of a shipping container hoisted by a crane roughly 15 meters above the crowd. Guests pulled a physical lever on a ground‑level prop; the real‑time game ran on my control system and played out on the towering LED panel. Align the three reels, hit the jackpot, win a Tiger—simple, bold, and unmistakably visible.\n\n### My Role\n\nEnd‑to‑end creative technology, from interaction electronics and firmware to the game engine, animation playback, long‑run video transport, and on‑site integration.\n\n### Tech Stack\n\n- Hardware interface: C++ (embedded) on Teensy 3.2\n- Visuals and game software: Python\n- Transport: HDMI over RJ45 to the LED controller inside the hoisted container\n\n### System Architecture\n\n- Input: A mechanical lever on the slot‑machine scenic piece\n- Microcontroller: Teensy 3.2 reads the lever, performs debouncing, and exposes a clean event/state over a lightweight serial protocol\n- Game engine: A Python application receives the lever event, runs the slot logic (randomness, state machine, win conditions), and triggers reel animations and outcomes\n- Output: The Python engine renders the visuals and outputs a stable HDMI feed; this feed is extended over RJ45 to the LED controller, which drives the container‑mounted LED wall",
       "thumbnail": {
         "type": "video",
-        "path": "/media/projects/IMG_9757.MOV"
+        "path": "/media/projects/gfff.mp4"
       },
       "mediaGallery": [
         {
-          "type": "image",
-          "path": "/media/projects/ADM_0763_resize.JPG",
+          "type": "video",
+          "path": "/media/projects/Untitled.mp4",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "/media/projects/whatsapp_image_2023-10-04_at_113409.jpeg",
+          "path": "/media/projects/semtituloo.jpg",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "/media/projects/20231001_211612.jpg",
+          "path": "/media/projects/Sem22título.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/NAOEUMAFESTA05_279.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "video",
+          "path": "/media/projects/lab.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "video",
+          "path": "/media/projects/labaaaaaa.mp4",
           "caption": "",
           "layout": "standard"
         }
@@ -231,55 +248,38 @@
       ]
     },
     {
-      "id": "tiger-beer",
-      "title": "Tiger Jackpot",
-      "year": 2022,
-      "client": "Isso Não É Uma Festa",
-      "role": "Technical Director",
+      "id": "petrobras-70anos",
+      "title": "Petrobras 70 Years",
+      "year": 2023,
+      "client": "Petrobras",
+      "role": "Creative Technologist",
       "category": "work",
       "tags": [
-        "Python",
-        "Embedded Electronics"
+        "Touchdesigner",
+        "Kinect",
+        "Interactive Installation"
       ],
-      "body": "## Tiger Beer — The Sky‑High Jackpot (2022)\n\nCreative Technologist & Developer\n\n### Overview\n\nFor Tiger Beer at the event “Isso não é uma festa” (“This is not a party”), I delivered a large‑scale interactive slot machine whose “screen” was a high‑resolution LED wall mounted on the long side of a shipping container hoisted by a crane roughly 15 meters above the crowd. Guests pulled a physical lever on a ground‑level prop; the real‑time game ran on my control system and played out on the towering LED panel. Align the three reels, hit the jackpot, win a Tiger—simple, bold, and unmistakably visible.\n\n### My Role\n\nEnd‑to‑end creative technology, from interaction electronics and firmware to the game engine, animation playback, long‑run video transport, and on‑site integration.\n\n### Tech Stack\n\n- Hardware interface: C++ (embedded) on Teensy 3.2\n- Visuals and game software: Python\n- Transport: HDMI over RJ45 to the LED controller inside the hoisted container\n\n### System Architecture\n\n- Input: A mechanical lever on the slot‑machine scenic piece\n- Microcontroller: Teensy 3.2 reads the lever, performs debouncing, and exposes a clean event/state over a lightweight serial protocol\n- Game engine: A Python application receives the lever event, runs the slot logic (randomness, state machine, win conditions), and triggers reel animations and outcomes\n- Output: The Python engine renders the visuals and outputs a stable HDMI feed; this feed is extended over RJ45 to the LED controller, which drives the container‑mounted LED wall",
+      "body": "Interactive Particle Installation (2023)\n\n## About \n\nCommissioned by V3A, I proposed and developed an interactive LED installation for Petrobras’s 70th‑anniversary exhibition. A Kinect V2 captured visitors’ body movement to drive a real‑time particle system rendered on a P2.9 LED wall—evoking energy, flow, and scale through responsive motion and color.\n\nPetrobras is Brazil’s state‑controlled oil and gas company and one of Latin America’s most influential industrial brands. Its 70th‑anniversary exhibition in 2023 celebrated the company’s history and innovation with large‑scale public‑facing experiences.\n\n## My role\n\nCreative Technologist and Lead Developer (proposal + build). I designed the interaction model, authored the visual assets, built the particle engine, integrated hardware and software, and delivered onsite calibration and support.\n\n## How it worked \n\nKinect V2 depth and skeletal data fed normalized vectors into TouchDesigner. A GPU‑accelerated particle system (instancing/feedback) reacted to proximity, velocity, and gesture via attraction, turbulence, and trail‑decay behaviors. Output was mapped pixel‑accurately to the P2.9 LED wall through the processor for crisp, low‑latency playback. An idle mode ran when no viewer was detected.\n\n## Responsibilities\n\n- Creative tech and technical development (proposal → delivery)\n- Particle system design and content creation\n- Kinect integration, data smoothing, and interaction tuning\n- LED wall mapping, calibration, and onsite support\n\n## Technical notes\n\n- Kinect V2 depth/skeleton tracking with filtering for jitter and occlusion\n- TouchDesigner for real‑time simulation, control, and render\n- Pixel‑accurate mapping to a 2.9 mm pitch LED wall (optimized for viewing distance)\n- Fail‑safe/idle loop when no audience is present; no image storage (privacy‑safe)\n- Low‑latency signal chain to preserve responsiveness\n\n## Technologies\n\n- Kinect V2\n- TouchDesigner\n- P2.9 LED wall + processor",
       "thumbnail": {
         "type": "video",
-        "path": "/media/projects/gfff.mp4"
+        "path": "/media/projects/IMG_9757.MOV"
       },
       "mediaGallery": [
         {
-          "type": "video",
-          "path": "/media/projects/Untitled.mp4",
+          "type": "image",
+          "path": "/media/projects/ADM_0763_resize.JPG",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "/media/projects/semtituloo.jpg",
+          "path": "/media/projects/whatsapp_image_2023-10-04_at_113409.jpeg",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "/media/projects/Sem22título.jpg",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "image",
-          "path": "/media/projects/NAOEUMAFESTA05_279.jpg",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "video",
-          "path": "/media/projects/lab.mp4",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "video",
-          "path": "/media/projects/labaaaaaa.mp4",
+          "path": "/media/projects/20231001_211612.jpg",
           "caption": "",
           "layout": "standard"
         }
