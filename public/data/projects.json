@@ -92,12 +92,18 @@
         "LED Wall",
         "Technical Concept"
       ],
-      "body": "# Brasileirão Série A — Title Sequence for SporTV\n\n## About\n\nInvited by I Hate Flash to lead technical direction, I built the look in-camera. We installed an L‑shaped LED wall to force perspective and lit talent with practical sources, so light, color, and reflections came from real photons—not post. The result is sharp, athletic, and tactile, with depth and texture captured live on set.\n\n## My role\n\nI led technical direction and delivered the hardware stack, operating motion playback, creating part of the content, and integrating assets from other artists. I matched the camera to the LED system—tests for distance, focal length, aperture, and shutter vs. panel refresh—to avoid moiré and keep images clean.\n\n## How it worked\n\nWe aligned and mapped the corner LED to sell perspective through geometry and content. Practical lighting projector was time‑linked to the motion. Camera–LED calibration buried pixel pitch in focus and eliminated moiré, letting the wall read as a seamless environment rather than a screen.\n\n## Responsibilities\n\n- Technical direction and hardware delivery\n- LED corner wall: supply, assembly, mapping, and calibration\n- Motion operation and content integration (ours + guest artists)\n\n## Technical notes\n\n- L‑shaped LED geometry for in‑camera forced perspective\n- Content mapped at native panel resolution to prevent resampling artifacts\n- Moiré control via distance/focal/aperture and shutter/refresh alignment\n\n## Technologies\n\n- LED wall + processor (corner configuration)\n- Resolume Arena media server for playback, sync, and mapping",
+      "body": "# Brasileirão Série A — Title Sequence for SporTV\n\n## About\n\nInvited by I Hate Flash to lead technical direction, I built the look in-camera. We installed an L‑shaped LED wall to force perspective and lit talent with practical sources, so light, color, and reflections came from real photons—not post. The result is sharp, athletic, and tactile, with depth and texture captured live on set.\n\n## My role\n\nI led technical direction and delivered the hardware stack, operating motion playback, creating part of the content, and integrating assets from other artists. I matched the camera to the LED system—tests for distance, focal length, aperture, and shutter vs. panel refresh—to avoid moiré and keep images clean.\n\n\n## How it worked\n\nWe aligned and mapped the corner LED to sell perspective through geometry and content. Practical lighting projector was time‑linked to the motion. Camera–LED calibration buried pixel pitch in focus and eliminated moiré, letting the wall read as a seamless environment rather than a screen.\n\n\n## Responsibilities\n\n- Technical direction and hardware delivery\n- LED corner wall: supply, assembly, mapping, and calibration\n- Motion operation and content integration (ours + guest artists)\n\n\n## Technical notes\n\n- L‑shaped LED geometry for in‑camera forced perspective\n- Content mapped at native panel resolution to prevent resampling artifacts\n- Moiré control via distance/focal/aperture and shutter/refresh alignment\n\n\n## Technologies\n\n- LED wall + processor (corner configuration)\n- Resolume Arena media server for playback, sync, and mapping",
       "thumbnail": {
         "type": "video",
-        "path": "/media/projects/videoplaybackbrasileirao001.mp4"
+        "path": "/media/projects/videoplaybackbrasileirao002.mp4"
       },
       "mediaGallery": [
+        {
+          "type": "video",
+          "path": "/media/projects/videoplaybackbrasileirao001.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
         {
           "type": "image",
           "path": "/media/projects/IMG_3005.jpg",
@@ -105,8 +111,14 @@
           "layout": "tall"
         },
         {
-          "type": "image",
-          "path": "/media/projects/IMG_2995.jpg",
+          "type": "video",
+          "path": "/media/projects/videoplaybackbrasileirao004.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "video",
+          "path": "/media/projects/videoplaybackbrasileirao005.mp4",
           "caption": "",
           "layout": "standard"
         },
