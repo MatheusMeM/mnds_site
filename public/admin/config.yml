@@ -46,8 +46,8 @@ collections:
                   - label: "Path"
                     name: "path"
                     widget: "file"
-                    media_folder: "{{fields.id}}"
-                    public_folder: "/media/projects/{{fields.id}}"
+                    media_folder: "/media/projects"
+                    public_folder: "/media/projects"
                     media_library:
                       config:
                         allow_multiple: false
@@ -59,8 +59,8 @@ collections:
                   - label: "Path"
                     name: "path"
                     widget: "file"
-                    media_folder: "{{fields.id}}"
-                    public_folder: "/media/projects/{{fields.id}}"
+                    media_folder: "/media/projects"
+                    public_folder: "/media/projects"
                     media_library:
                       config:
                         allow_multiple: false
