@@ -136,9 +136,9 @@
         },
         {
           "type": "video",
-          "path": "/media/projects/Untitled.mp4",
+          "path": "/media/projects/gUntitled.mp4",
           "caption": "",
-          "layout": "standard"
+          "layout": "tall"
         }
       ]
     }
