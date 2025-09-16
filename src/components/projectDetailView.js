@@ -51,51 +51,55 @@ export function renderProjectDetail(project, containerElement) {
   const thumbnailPath = resolveThumbnailPath(project);
 
   containerElement.innerHTML = `
-    <div class="project-detail">
-      <!-- Hero thumbnail section -->
-      <div class="project-hero">
-        <img class="project-hero-thumbnail lazy" data-src="${thumbnailPath}" alt="${project.title}">
-        <button class="back-button">← Back to Grid</button>
-      </div>
+    <article class="project-detail">
+      <!-- Hero section with constrained thumbnail -->
+      <section class="project-hero">
+        <div class="hero-container">
+          <img class="project-hero-thumbnail lazy" data-src="${thumbnailPath}" alt="${project.title}">
+        </div>
+      </section>
 
-      <!-- Project title -->
-      <header class="project-detail-header">
-        <h1 class="project-detail-title">${project.title}</h1>
-      </header>
+      <!-- Project title section -->
+      <section class="project-header">
+        <div class="header-container">
+          <nav class="project-navigation">
+            <button class="back-button">← Back to Grid</button>
+          </nav>
+          <h1 class="project-title">${project.title}</h1>
+          <div class="project-meta-inline">
+            <span class="meta-client">${project.client}</span>
+            <span class="meta-year">${project.year}</span>
+            <span class="meta-role">${project.role}</span>
+          </div>
+        </div>
+      </section>
 
-      <!-- Content section -->
-      <div class="project-detail-content">
-        <aside class="project-meta">
-          <div class="meta-item">
-            <strong>Client</strong>
-            <span>${project.client}</span>
-          </div>
-          <div class="meta-item">
-            <strong>Year</strong>
-            <span>${project.year}</span>
-          </div>
-          <div class="meta-item">
-            <strong>Role</strong>
-            <span>${project.role}</span>
-          </div>
-          <div class="meta-item">
-            <strong>Tags</strong>
-            <div class="project-tags">
-              ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+      <!-- Editorial content layout -->
+      <section class="project-content">
+        <div class="content-grid">
+          <!-- Left column: Project information -->
+          <aside class="project-sidebar">
+            <div class="sidebar-section">
+              <h3 class="sidebar-label">About</h3>
+              <div class="project-description">
+                ${formattedBody}
+              </div>
             </div>
-          </div>
-        </aside>
+            
+            <div class="sidebar-section">
+              <h3 class="sidebar-label">Technologies</h3>
+              <div class="project-tags">
+                ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+              </div>
+            </div>
+          </aside>
 
-        <main class="project-story">
-          <!-- Project description -->
-          <div>${formattedBody}</div>
-        </main>
-      </div>
-
-      <!-- Media gallery -->
-      <div class="project-detail-gallery">
-        ${resolvedGallery.map(createMediaGalleryItem).join('')}
-      </div>
-    </div>
+          <!-- Right column: Visual content -->
+          <main class="project-gallery">
+            ${resolvedGallery.map(createMediaGalleryItem).join('')}
+          </main>
+        </div>
+      </section>
+    </article>
   `;
 }

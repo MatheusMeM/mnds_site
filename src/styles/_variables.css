@@ -5,29 +5,62 @@
 */
 
 :root {
-  /* Colors */
-  --color-background: #0D0D0D; /* A slightly softer black */
-  --color-text-primary: #EAEAEA;
-  --color-text-secondary: #888888;
-  --color-border: #222222;
+  /* Colors - Refined palette for graphic design */
+  --color-background: #0A0A0A; /* Deeper black for more contrast */
+  --color-text-primary: #F8F8F8; /* Softer white */
+  --color-text-secondary: #999999; /* Refined gray */
+  --color-text-tertiary: #666666; /* Subtle text */
+  --color-border: #1A1A1A; /* Subtle borders */
+  --color-accent: #FFFFFF; /* Pure white for emphasis */
 
-  /* Typography */
+  /* Typography - Editorial hierarchy */
   --font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-size-xl: clamp(2rem, 8vw, 5rem); /* Responsive heading */
-  --font-size-lg: 1.5rem;
-  --font-size-md: 1rem;
-  --font-size-sm: 0.875rem;
-  --font-weight-bold: 700;
+  --font-family-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; /* For headings */
+  
+  /* Fluid typography scale */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-md: 1rem;      /* 16px - body text */
+  --font-size-lg: 1.25rem;   /* 20px */
+  --font-size-xl: 1.75rem;   /* 28px */
+  --font-size-2xl: 2.5rem;   /* 40px */
+  --font-size-3xl: clamp(3rem, 8vw, 8rem); /* Responsive hero text */
+  
+  /* Font weights */
+  --font-weight-light: 300;
   --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 
-  /* Spacing */
+  /* Line heights */
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;
+
+  /* Letter spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
+
+  /* Spacing - Refined system */
   --spacing-unit: 8px;
-  --spacing-sm: var(--spacing-unit);      /* 8px */
-  --spacing-md: calc(var(--spacing-unit) * 2); /* 16px */
-  --spacing-lg: calc(var(--spacing-unit) * 4); /* 32px */
-  --spacing-xl: calc(var(--spacing-unit) * 8); /* 64px */
+  --spacing-xs: calc(var(--spacing-unit) * 0.5); /* 4px */
+  --spacing-sm: var(--spacing-unit);              /* 8px */
+  --spacing-md: calc(var(--spacing-unit) * 2);    /* 16px */
+  --spacing-lg: calc(var(--spacing-unit) * 4);    /* 32px */
+  --spacing-xl: calc(var(--spacing-unit) * 8);    /* 64px */
+  --spacing-2xl: calc(var(--spacing-unit) * 12);  /* 96px */
 
-  /* Motion */
+  /* Motion - More sophisticated timing */
+  --transition-speed-fast: 150ms;
   --transition-speed: 300ms;
-  --easing-function: ease-in-out;
+  --transition-speed-slow: 500ms;
+  --easing-function: cubic-bezier(0.4, 0, 0.2, 1); /* More sophisticated easing */
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Layout */
+  --max-width-content: 1200px;
+  --max-width-text: 65ch; /* Optimal reading width */
 }
