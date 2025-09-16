@@ -12,8 +12,8 @@ backend:
 media_folder: "public/media/projects"
 public_folder: "/media/projects"
 
-# Enable dynamic media folders
-media_folder_relative: true
+# Disable dynamic media folders for stability
+# media_folder_relative: true
 
 # Defines the editable content types
 collections:
@@ -44,26 +44,16 @@ collections:
                 fields:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - label: "Path"
-                    name: "path"
-                    widget: "file"
-                    media_folder: "/media/projects"
-                    public_folder: "/media/projects"
-                    media_library:
-                      config:
-                        allow_multiple: false
+                     name: "path"
+                     widget: "file"
               - label: "Media Gallery"
                 name: "mediaGallery"
                 widget: "list"
                 fields:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - label: "Path"
-                    name: "path"
-                    widget: "file"
-                    media_folder: "/media/projects"
-                    public_folder: "/media/projects"
-                    media_library:
-                      config:
-                        allow_multiple: false
+                     name: "path"
+                     widget: "file"
                   - { label: "Caption", name: "caption", widget: "string", required: false }
                   - label: "Layout"
                     name: "layout"
