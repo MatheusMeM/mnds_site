@@ -44,16 +44,16 @@ collections:
                 fields:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - label: "Path"
-                     name: "path"
-                     widget: "file"
+                    name: "path"
+                    widget: "file"
               - label: "Media Gallery"
                 name: "mediaGallery"
                 widget: "list"
                 fields:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - label: "Path"
-                     name: "path"
-                     widget: "file"
+                    name: "path"
+                    widget: "file"
                   - { label: "Caption", name: "caption", widget: "string", required: false }
                   - label: "Layout"
                     name: "layout"
