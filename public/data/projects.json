@@ -165,6 +165,24 @@
           "path": "/media/projects/ADM_0763_resize.JPG",
           "caption": "",
           "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/whatsapp_image_2023-10-04_at_113409.jpeg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "video",
+          "path": "/media/projects/20231001_211311.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/20231001_211612.jpg",
+          "caption": "",
+          "layout": "standard"
         }
       ]
     }
