@@ -8,14 +8,17 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.matheusmsmendes.workers.dev
   
-# Media files will be saved in the correct project-specific folders.
-media_folder: "public/media/projects"
-public_folder: "/media/projects"
+# Global media configuration (fallback for general assets)
+media_folder: "public/media/global"
+public_folder: "/media/global"
 
-# Defines the editable content types.git
+# Defines the editable content types
 collections:
   - name: "projects"
     label: "Portfolio Content"
+    # Project-specific media folders using template tags
+    media_folder: "public/media/projects/{{fields.id}}"
+    public_folder: "/media/projects/{{fields.id}}"
     files:
       - name: "main_projects"
         label: "Projects"

@@ -2,11 +2,11 @@
 
 // 1. Import the 'marked' library
 import { marked } from 'marked';
-// src/components/projectDetailView.js
+import { resolveGalleryPaths } from '../utils/mediaResolver.js';
 
 /**
  * Renders a single media item for the gallery.
- * @param {object} media - A media object from the project's mediaGallery array.
+ * @param {object} media - A media object with resolved path from the project's mediaGallery array.
  * @returns {string} The HTML string for the media item.
  */
 function createMediaGalleryItem(media) {
@@ -43,6 +43,9 @@ export function renderProjectDetail(project, containerElement) {
   // 2. Process the body text through the marked parser.
   // The `breaks: true` option ensures single newlines are rendered as <br> tags.
   const formattedBody = marked.parse(project.body || '', { breaks: true });
+  
+  // 3. Resolve all media gallery paths using the project ID
+  const resolvedGallery = resolveGalleryPaths(project);
 
   containerElement.innerHTML = `
     <div class="project-detail">
@@ -74,13 +77,13 @@ export function renderProjectDetail(project, containerElement) {
         </aside>
 
         <main class="project-story">
-          <!-- 3. This div will now correctly render the parsed HTML -->
+          <!-- 4. This div will now correctly render the parsed HTML -->
           <div>${formattedBody}</div>
         </main>
       </div>
 
       <div class="project-detail-gallery">
-        ${project.mediaGallery.map(createMediaGalleryItem).join('')}
+        ${resolvedGallery.map(createMediaGalleryItem).join('')}
       </div>
     </div>
   `;

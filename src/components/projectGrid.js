@@ -1,18 +1,23 @@
 // src/components/projectGrid.js
 
+import { resolveThumbnailPath } from '../utils/mediaResolver.js';
+
 /**
  * Generates the HTML for the project card's background media.
  * This function is now intelligent, handling different media types.
- * @param {Object} thumbnail - The thumbnail object from projects.json.
+ * @param {Object} project - The complete project object from projects.json.
  * @returns {string} The HTML string for the media element.
  */
-function createThumbnailMedia(thumbnail) {
+function createThumbnailMedia(project) {
+  const resolvedPath = resolveThumbnailPath(project);
+  const { thumbnail } = project;
+  
   switch (thumbnail.type) {
     case 'video':
-      return `<video src="${thumbnail.path}" class="project-card-video" autoplay loop muted playsinline></video>`;
+      return `<video src="${resolvedPath}" class="project-card-video" autoplay loop muted playsinline></video>`;
     case 'image':
     case 'gif':
-      return `<img src="${thumbnail.path}" class="project-card-image" alt="">`;
+      return `<img src="${resolvedPath}" class="project-card-image" alt="">`;
     // Add a case for 'model' in the future for 3D objects
     default:
       console.warn(`Unsupported thumbnail type: ${thumbnail.type}`);
@@ -27,13 +32,13 @@ function createThumbnailMedia(thumbnail) {
  */
 function createProjectCard(project) {
   return `
-    <div 
-      class="project-card" 
-      data-id="${project.id}" 
+    <div
+      class="project-card"
+      data-id="${project.id}"
       data-category="${project.category}"
     >
       <div class="project-card-media-wrapper">
-        ${createThumbnailMedia(project.thumbnail)}
+        ${createThumbnailMedia(project)}
       </div>
       <div class="project-card-overlay">
         <h3 class="project-title">${project.title}</h3>
