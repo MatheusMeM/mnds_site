@@ -31,9 +31,31 @@ const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
           element.classList.add('error');
         };
       } else if (element.tagName === 'VIDEO') {
+        // Performance-optimized video loading
         element.src = src;
-        element.classList.add('loaded');
-        element.removeAttribute('data-src');
+        element.preload = 'metadata';
+        
+        // Set up video event handlers
+        element.onloadedmetadata = () => {
+          element.classList.add('loaded');
+          element.removeAttribute('data-src');
+          
+          // Start autoplay only if video is in viewport and conditions are met
+          if (shouldAutoplayVideo()) {
+            element.play().catch(error => {
+              console.warn('Video autoplay failed:', error);
+              // Fallback: show poster or first frame
+              element.load();
+            });
+          }
+        };
+        
+        element.onerror = () => {
+          console.error('Failed to load video:', src);
+          element.classList.add('error');
+          // Create fallback poster image
+          createVideoFallback(element, src);
+        };
       }
       
       // Stop observing the element once it has been loaded
@@ -79,6 +101,52 @@ export function initializeLazyLoading(containerElement) {
  * Disconnects the lazy loading observer.
  * Useful for cleanup when the application is being destroyed.
  */
+/**
+ * Determines if video autoplay should be enabled based on performance conditions.
+ * @returns {boolean} Whether autoplay should be enabled.
+ */
+function shouldAutoplayVideo() {
+  // Check for reduced motion preference
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return false;
+  }
+  
+  // Check for mobile device or slow connection
+  const isMobile = window.innerWidth <= 768;
+  const isSlowConnection = navigator.connection &&
+    (navigator.connection.effectiveType === 'slow-2g' ||
+     navigator.connection.effectiveType === '2g');
+  
+  // Disable autoplay on mobile or slow connections
+  if (isMobile || isSlowConnection) {
+    return false;
+  }
+  
+  return true;
+}
+
+/**
+ * Creates a fallback image for failed video loads.
+ * @param {HTMLVideoElement} videoElement - The video element that failed to load.
+ * @param {string} videoSrc - The source URL of the failed video.
+ */
+function createVideoFallback(videoElement, videoSrc) {
+  // Try to create a poster image from video thumbnail if available
+  const posterSrc = videoSrc.replace(/\.(mp4|webm|mov)$/i, '.jpg');
+  const fallbackImg = document.createElement('img');
+  
+  fallbackImg.src = posterSrc;
+  fallbackImg.className = videoElement.className;
+  fallbackImg.style.cssText = videoElement.style.cssText;
+  fallbackImg.onerror = () => {
+    // If poster also fails, show placeholder
+    fallbackImg.style.background = 'var(--color-border)';
+    fallbackImg.alt = 'Video unavailable';
+  };
+  
+  videoElement.parentNode.replaceChild(fallbackImg, videoElement);
+}
+
 export function destroyLazyLoading() {
   lazyLoadObserver.disconnect();
 }

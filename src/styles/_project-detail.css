@@ -27,6 +27,32 @@
   background: var(--color-border);
 }
 
+/* Video-specific optimizations for hero */
+.project-hero-thumbnail[data-src$=".mp4"],
+.project-hero-thumbnail[data-src$=".webm"],
+.project-hero-thumbnail[data-src$=".mov"] {
+  /* Performance optimizations for video */
+  will-change: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+video.project-hero-thumbnail {
+  /* Ensure smooth playback */
+  object-fit: cover;
+  background: var(--color-background);
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  video.project-hero-thumbnail {
+    /* Reduce quality on mobile for better performance */
+    max-height: 40vh;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+}
+
 /* Project Header Section */
 .project-header {
   background: var(--color-background);

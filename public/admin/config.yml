@@ -45,9 +45,12 @@ collections:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - label: "Path"
                     name: "path"
-                    widget: "image"
+                    widget: "file"
                     media_folder: "{{fields.id}}"
                     public_folder: "/media/projects/{{fields.id}}"
+                    media_library:
+                      config:
+                        allow_multiple: false
               - label: "Media Gallery"
                 name: "mediaGallery"
                 widget: "list"
@@ -55,9 +58,12 @@ collections:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
                   - label: "Path"
                     name: "path"
-                    widget: "image"
+                    widget: "file"
                     media_folder: "{{fields.id}}"
                     public_folder: "/media/projects/{{fields.id}}"
+                    media_library:
+                      config:
+                        allow_multiple: false
                   - { label: "Caption", name: "caption", widget: "string", required: false }
                   - label: "Layout"
                     name: "layout"

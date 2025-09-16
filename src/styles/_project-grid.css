@@ -59,6 +59,42 @@
   transition: all var(--transition-speed) var(--easing-function);
 }
 
+/* Video performance optimizations */
+.project-card-video {
+  /* Hardware acceleration for smooth playback */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  
+  /* Optimize for autoplay performance */
+  preload: "metadata";
+  poster: "";
+}
+
+/* Mobile video optimizations */
+@media (max-width: 768px) {
+  .project-card-video {
+    /* Reduce quality on mobile for better performance */
+    transform: translateZ(0) scale(1);
+    will-change: auto;
+  }
+  
+  /* Disable video hover effects on mobile for better performance */
+  .project-card:hover .project-card-video {
+    transform: translateZ(0) scale(1);
+    filter: none;
+  }
+}
+
+/* Prefers reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .project-card-video {
+    /* Pause autoplay for users who prefer reduced motion */
+    animation-play-state: paused;
+  }
+}
+
 .project-card:hover .project-card-video,
 .project-card:hover .project-card-image {
   transform: scale(1.05);

@@ -4,6 +4,24 @@
 import { marked } from 'marked';
 
 /**
+ * Generates the HTML for the project hero thumbnail.
+ * @param {Object} thumbnail - The thumbnail object from projects.json.
+ * @returns {string} The HTML string for the hero media element.
+ */
+function createHeroThumbnail(thumbnail) {
+  switch (thumbnail.type) {
+    case 'video':
+      return `<video class="project-hero-thumbnail lazy" data-src="${thumbnail.path}" autoplay loop muted playsinline></video>`;
+    case 'image':
+    case 'gif':
+      return `<img class="project-hero-thumbnail lazy" data-src="${thumbnail.path}" alt="">`;
+    default:
+      console.warn(`Unsupported thumbnail type: ${thumbnail.type}`);
+      return `<img class="project-hero-thumbnail lazy" data-src="${thumbnail.path}" alt="">`;
+  }
+}
+
+/**
  * Renders a single media item for the gallery.
  * @param {object} media - A media object from the project's mediaGallery array.
  * @returns {string} The HTML string for the media item.
@@ -48,7 +66,7 @@ export function renderProjectDetail(project, containerElement) {
       <!-- Hero section with constrained thumbnail -->
       <section class="project-hero">
         <div class="hero-container">
-          <img class="project-hero-thumbnail lazy" data-src="${project.thumbnail.path}" alt="${project.title}">
+          ${createHeroThumbnail(project.thumbnail)}
         </div>
       </section>
 
