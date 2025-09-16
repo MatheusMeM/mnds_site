@@ -4,37 +4,61 @@
       "id": "Simbiose",
       "title": "Simbiose",
       "year": 2023,
-      "client": "OiFuturos",
-      "role": "Tech Director",
+      "client": "Oi Futuro",
+      "role": "Developer",
       "category": "work",
       "tags": [
         "Software",
         "Touchdesigner",
         "ShowControl"
       ],
-      "body": "Oi Futuro apresenta a exposição inédita “Simbiose – A conexão pelos fungos”. Com criação da Deeplab Project – estúdio que integra design e tecnologia para criar experiências – e curadoria de Eduardo Carvalho, a mostra traz de maneira lúdica a surpreendente e pouco conhecida imensidão do universo dos fungos.\n\n“Falar de fungos é abordar a coletividade, a conexão em redes, a transformação na natureza e pela natureza. Estamos entrelaçados, assim como os fungos em suas redes miceliais, responsáveis por nutrir cogumelos e facilitar a comunicação entre espécies vegetais. Essa grande membrana quimicamente sensível, que permite a conexão entre as partes, mesmo a centenas de metros de distância, é uma bela demonstração de como nossas ações têm o poder de impactar o todo, e como o todo nos impacta”, explica Carvalho, curador da mostra.\n\n“Simbiose é um pequeno recorte sobre essa vastidão que é o universo dos fungos. Ao produzirmos conteúdos como o apresentado na mostra, reforçamos nossa missão sobre o uso do digital do analógico para entreter e compartilhar conhecimento, abordando temas ligados à ciência e ao meio ambiente”, afirma o sócio-diretor da Deeplab Felipe Reif.",
+      "body": "## Simbiose — The Connection Through Fungi\n\nOi Futuro, Rio de Janeiro — early 2023\n\nAn immersive, free, all‑ages exhibition that invited visitors to wander through the hidden intelligence of fungi. The space combined projection‑mapped visuals, responsive light, and an enveloping soundscape to illustrate how fungal networks communicate, recycle, and sustain life. Instead of a didactic tech demo, the room behaved like an ecosystem: media, light, and sound breathed together, rising and falling in a shared rhythm—alive, interconnected, and quietly powerful.\n\n## My role\n\nI led show‑control software and technical direction for systems integration. In practice, that meant designing the control architecture, programming the real‑time engine in TouchDesigner, and ensuring projection, lighting, and audio stayed precisely in sync from the first boot of the day to the last visitor at night.\n\n## How it worked\n\nThe exhibition ran on a single, cohesive control brain: **TouchDesigner**. From there, we mapped the projection surface, drove the audio, and orchestrated the lighting so every cue felt organic and synchronized. Networking mattered: sACN carried both the high‑density pixel data to an Advatek controller for WS2812 arrays and the DMX universes that fed the LED PARs and pixel battens. A unified clock and cue logic kept everything aligned—video pulses, color shifts, and sonic textures locked together, so visitors perceived one coherent organism rather than separate systems.\n\nOperationally, the show started itself. Each morning, the system booted unattended, launched the right components in the right order, verified device presence, and settled into the opening scene. Staff didn’t need to “drive” the rig—only to power the room safely and check status. If something went offline, health scripts guided a quick recovery path. Reliability wasn’t an afterthought; it was part of the design.\n\n## Responsibilities\n\n- Show‑control architecture and integration across video, lighting, and audio\n- TouchDesigner programming for media playback, real‑time sync, cueing, and automation\n- Projection mapping and edge‑blending (Kantan Mapper inside TouchDesigner)\n- Lighting control:\n    - sACN to Advatek node for WS2812 pixel arrays and DMX512 output.\n- Reliability and operations: unattended startup, health checks, recovery steps, and staff training\n\n\n## Technical notes \n\n- TouchDesigner as the single show‑control engine: media, lighting, audio, timing, and state management in one place\n- Projection mapping and warping handled via Kantan Mapper; GPU‑direct outputs to the projectors\n- Lighting data split at the network layer:\n    - High‑bandwidth pixel streams over sACN to an Advatek controller (WS2812)\n    - Fixture control (LED PARs, pixel battens) as sACN universes bridged to DMX512\n- Unified cue stack and clocking ensured per‑frame alignment of media, color, and sound\n- Automated daily startup; friendly shutdown/startup procedures for the on‑site team\n\n### \n\n### Links\n\n- Oi Futuro (exhibition): [![Ícone do site](https://app.adapta.one/_next/image?url=https%3A%2F%2Fwww.google.com%2Fs2%2Ffavicons%3Fdomain%3Doifuturo.org.br%26sz%3D16&w=32&q=75)oifuturo.org.br](https://oifuturo.org.br/evento/seminario-simbiose-a-conexao-pelos-fungos/)",
       "thumbnail": {
         "type": "image",
-        "path": "/media/projects/thumbnail-simbiose.jpg"
+        "path": "/media/projects/740a58cbc904/b311aa1c-53fa-4616-bccc-7406d61b1a64.jpg"
       },
       "mediaGallery": [
         {
           "type": "image",
-          "path": "/media/projects/gallery-simbiose-01.jpg",
+          "path": "/media/projects/5873d2f4ae0d/a6adc692-5482-4a3c-85f4-56dafaf5bba7.jpg",
           "caption": "",
           "layout": "tall"
         },
         {
           "type": "image",
-          "path": "/media/projects/gallery-simbiose-02.jpg",
+          "path": "/media/projects/7b670ac68c63/40a13765-171f-47e6-8cb0-f977fe6f0646.jpg",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "/media/projects/gallery-simbiose-03.jpg",
+          "path": "/media/projects/08813efb7e1a/8ba08420-9867-4c8f-ac4a-dc8d3f38f1bf.jpg",
           "caption": "",
-          "layout": "large"
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/84bb20e4e956/82dd2c4e-9341-4484-8417-15b5b6a25abf.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/02c27610f1bb/b1369be7-dd69-4d80-a999-e7ea286a9cc2.jpg",
+          "caption": "",
+          "layout": "full-bleed"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/1545ae4cbc1b/acea7f70-d2ea-4779-8b6a-493eccab7927.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/8af1d66cdab5/483a60e8-a673-459b-8f78-03d622cb6eaa.jpg",
+          "caption": "",
+          "layout": "wide"
         }
       ]
     }
