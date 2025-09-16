@@ -192,7 +192,7 @@
         "Exhibition",
         "Light Design"
       ],
-      "body": "## Sai‑Fai — Brazilian Science Fiction\n\n\n\n\n\nLighting Design, Art‑Net/DMX Show Control, and Pixel‑Mapped Entry Corridor\n\n\n\n\n\n\n\n\n\n\n\n\n- Venue: Museum of Tomorrow (Museu do Amanhã), Rio de Janeiro, Brazil\n- Official page: [![Ícone do site](https://app.adapta.one/_next/image?url=https%3A%2F%2Fwww.google.com%2Fs2%2Ffavicons%3Fdomain%3Dmuseudoamanha.org.br%26sz%3D16&w=32&q=75)museudoamanha.org.br](https://museudoamanha.org.br/en/exhibitions/1225/sai-fai)\n\n\n\n\n\n\n\n\n\n\n\n\n### Exhibition Overview\n\n\n\n\n\nSai‑Fai presented a contemporary panorama of Brazilian speculative fiction—where literature, illustration, video, and sound converge. With strong threads of Afrofuturism and Indigenous futurism, the show invited visitors to imagine alternate realities rooted in Brazilian territories and cosmologies. The space blurred the line between reading, listening, and viewing to create a cohesive, multi‑sensory narrative.\n\n\n\n\n\n\n\n\n\n\n\n\n### My Role\n\n\n\n\n\nEnd‑to‑end lighting and show control across three layers:\n\n\n\n\n\n- Neutral, reading‑grade white base for the expography—comfort, legibility, faithful color.\n- DMX detail lighting embedded in scenography—narrative accents, depth, and controlled rhythm.\n- Pixel‑mapped entry corridor using WS2811 addressable LED strips—kinetic prelude to the galleries.\n\n\n\n\n\n\n\n\n\n\n\n\n### Design Approach\n\n\n\n\n\nLighting as a restrained narrative layer—guiding attention without overpowering artworks.\n\n\n\n\n\n- White Base: Balanced CCT/illuminance; spill control to protect prints and media.\n- DMX Accents: Tight beams and smooth transitions to punctuate key moments.\n- WS2811 Corridor: Subtle textures and rhythmic cues to frame the speculative tone from the first step.\n\n\n\n\n\n\n\n\n\n\n\n\n### Control Architecture\n\n\n\n\n\n- Protocols: Art‑Net distribution; DMX512 universes for fixtures; dedicated pixel mapping for WS2811.\n- Organization: Clear universe/channel mapping and labeled pixel segments for fast diagnostics.\n- Operations: Presets for daily states; live overrides; documented quick‑recover procedures.\n\n\n\n\n\n\n\n\n\n\n\n\n### Responsibilities\n\n\n\n\n\nTechnical survey and power/network planning; fixture placement and focus; DMX addressing and pixel segmentation; scene programming aligned with sound and image; onsite calibration.\n\n\n\n\n\n\n### Visitor Experience\n\n- Reading/Viewing: Legible, comfortable base with targeted highlights—no glare or washout.\n- Listening/Feeling: Calm luminance floor; transitions that read dramaturgical, not theatrical.\n- Arrival/Transition: WS2811 corridor sets an imaginative tone before the main room.\n\n\n\n\n\n\n\n\n\n\n\n\n### Outcome\n\n\n\n\n\nA coherent “light layer” that supports reading, adds narrative nuance, and introduces a memorable entry sequence—delivering reliable day‑to‑day operation throughout the run.",
+      "body": "## Sai‑Fai — Brazilian Science Fiction\n\nLighting Design, Art‑Net/DMX Show Control, and Pixel‑Mapped Entry Corridor\n\n- Venue: Museum of Tomorrow (Museu do Amanhã), Rio de Janeiro, Brazil\n- Official page: [![Ícone do site](https://app.adapta.one/_next/image?url=https%3A%2F%2Fwww.google.com%2Fs2%2Ffavicons%3Fdomain%3Dmuseudoamanha.org.br%26sz%3D16&w=32&q=75)museudoamanha.org.br](https://museudoamanha.org.br/en/exhibitions/1225/sai-fai)\n\n### Exhibition Overview\n\nSai‑Fai presented a contemporary panorama of Brazilian speculative fiction—where literature, illustration, video, and sound converge. With strong threads of Afrofuturism and Indigenous futurism, the show invited visitors to imagine alternate realities rooted in Brazilian territories and cosmologies. The space blurred the line between reading, listening, and viewing to create a cohesive, multi‑sensory narrative.\n\n### My Role\n\nEnd‑to‑end lighting and show control across three layers:\n\n- Neutral, reading‑grade white base for the expography—comfort, legibility, faithful color.\n- DMX detail lighting embedded in scenography—narrative accents, depth, and controlled rhythm.\n- Pixel‑mapped entry corridor using WS2811 addressable LED strips—kinetic prelude to the galleries.\n\n### Design Approach\n\nLighting as a restrained narrative layer—guiding attention without overpowering artworks.\n\n- White Base: Balanced CCT/illuminance; spill control to protect prints and media.\n- DMX Accents: Tight beams and smooth transitions to punctuate key moments.\n- WS2811 Corridor: Subtle textures and rhythmic cues to frame the speculative tone from the first step.\n\n### Control Architecture\n\n- Protocols: Art‑Net distribution; DMX512 universes for fixtures; dedicated pixel mapping for WS2811.\n- Organization: Clear universe/channel mapping and labeled pixel segments for fast diagnostics.\n- Operations: Presets for daily states; live overrides; documented quick‑recover procedures.\n\n### Responsibilities\n\nTechnical survey and power/network planning; fixture placement and focus; DMX addressing and pixel segmentation; scene programming aligned with sound and image; onsite calibration.\n\n### Visitor Experience\n\n- Reading/Viewing: Legible, comfortable base with targeted highlights—no glare or washout.\n- Listening/Feeling: Calm luminance floor; transitions that read dramaturgical, not theatrical.\n- Arrival/Transition: WS2811 corridor sets an imaginative tone before the main room.\n\n### Outcome\n\nA coherent “light layer” that supports reading, adds narrative nuance, and introduces a memorable entry sequence—delivering reliable day‑to‑day operation throughout the run.",
       "thumbnail": {
         "type": "image",
         "path": "/media/projects/img9.jpg"
@@ -250,6 +250,24 @@
         {
           "type": "video",
           "path": "/media/projects/Untitled.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/NAOEUMAFESTA05_029.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/NAOEUMAFESTA05_035.jpg",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/NAOEUMAFESTA05_279.jpg",
           "caption": "",
           "layout": "standard"
         }
