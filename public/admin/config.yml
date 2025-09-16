@@ -8,9 +8,12 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.matheusmsmendes.workers.dev
   
-# Media files organized by category for better management
+# Media files organized by project - dynamic folder creation
 media_folder: "public/media/projects"
 public_folder: "/media/projects"
+
+# Enable dynamic media folders
+media_folder_relative: true
 
 # Defines the editable content types
 collections:
@@ -40,13 +43,21 @@ collections:
                 widget: "object"
                 fields:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
-                  - { label: "Path", name: "path", widget: "image" }
+                  - label: "Path"
+                    name: "path"
+                    widget: "image"
+                    media_folder: "{{fields.id}}"
+                    public_folder: "/media/projects/{{fields.id}}"
               - label: "Media Gallery"
                 name: "mediaGallery"
                 widget: "list"
                 fields:
                   - { label: "Type", name: "type", widget: "select", options: ["image", "video", "gif"] }
-                  - { label: "Path", name: "path", widget: "image" }
+                  - label: "Path"
+                    name: "path"
+                    widget: "image"
+                    media_folder: "{{fields.id}}"
+                    public_folder: "/media/projects/{{fields.id}}"
                   - { label: "Caption", name: "caption", widget: "string", required: false }
                   - label: "Layout"
                     name: "layout"
