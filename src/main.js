@@ -29,7 +29,6 @@ let aboutSceneInstance = null; // Keep a reference to destroy it later
 const transitionDuration = 300; // Must match --transition-speed in CSS
 
 function transitionViews(currentView, nextView, renderCallback) {
-  // ... (This function remains unchanged, it is already correct) ...
   if (currentView) {
     currentView.classList.add('view-exit');
   }
@@ -48,7 +47,6 @@ function transitionViews(currentView, nextView, renderCallback) {
 
 // --- Navigation State Update ---
 function updateActiveNavLink(path, category) {
-  // ... (This function remains unchanged, it is already correct) ...
   navLinks.forEach(link => {
     link.classList.remove('active');
     const linkPath = link.getAttribute('href');
@@ -69,8 +67,7 @@ function updateActiveNavLink(path, category) {
 // --- Route Handler ---
 async function handleRouteChange() {
   const { path, category, projectId } = router.getCurrentLocation();
-
-  // CRITICAL FIX: The new, correct guard clause.
+  
   // Exit only if the path is exactly the same as the one we're already displaying.
   if (path === currentPath && !projectId) {
     return;
