@@ -241,10 +241,10 @@
         "Python",
         "Embedded Electronics"
       ],
-      "body": "## Tiger Beer — The Sky‑High Jackpot (2022)\n\n\n\n\n\nCreative Technologist & Developer\n\n\n\n\n\n\n\n\n\n\n\n\n### Overview\n\n\n\n\n\nFor Tiger Beer at the event “Isso não é uma festa” (“This is not a party”), I delivered a large‑scale interactive slot machine whose “screen” was a high‑resolution LED wall mounted on the long side of a shipping container hoisted by a crane roughly 15 meters above the crowd. Guests pulled a physical lever on a ground‑level prop; the real‑time game ran on my control system and played out on the towering LED panel. Align the three reels, hit the jackpot, win a Tiger—simple, bold, and unmistakably visible.\n\n\n\n\n\n\n\n\n\n\n\n\n### My Role\n\n\n\n\n\nEnd‑to‑end creative technology, from interaction electronics and firmware to the game engine, animation playback, long‑run video transport, and on‑site integration.\n\n\n\n\n\n\n\n\n\n\n\n\n### Tech Stack\n\n\n\n\n\n- Hardware interface: C++ (embedded) on Teensy 3.2\n- Visuals and game software: Python\n- Transport: HDMI over RJ45 to the LED controller inside the hoisted container\n\n\n\n\n\n\n\n\n\n\n\n\n### System Architecture\n\n\n\n\n- Input: A mechanical lever on the slot‑machine scenic piece\n- Microcontroller: Teensy 3.2 reads the lever, performs debouncing, and exposes a clean event/state over a lightweight serial protocol\n- Game engine: A Python application receives the lever event, runs the slot logic (randomness, state machine, win conditions), and triggers reel animations and outcomes\n- Output: The Python engine renders the visuals and outputs a stable HDMI feed; this feed is extended over RJ45 to the LED controller, which drives the container‑mounted LED wall",
+      "body": "## Tiger Beer — The Sky‑High Jackpot (2022)\n\nCreative Technologist & Developer\n\n### Overview\n\nFor Tiger Beer at the event “Isso não é uma festa” (“This is not a party”), I delivered a large‑scale interactive slot machine whose “screen” was a high‑resolution LED wall mounted on the long side of a shipping container hoisted by a crane roughly 15 meters above the crowd. Guests pulled a physical lever on a ground‑level prop; the real‑time game ran on my control system and played out on the towering LED panel. Align the three reels, hit the jackpot, win a Tiger—simple, bold, and unmistakably visible.\n\n### My Role\n\nEnd‑to‑end creative technology, from interaction electronics and firmware to the game engine, animation playback, long‑run video transport, and on‑site integration.\n\n### Tech Stack\n\n- Hardware interface: C++ (embedded) on Teensy 3.2\n- Visuals and game software: Python\n- Transport: HDMI over RJ45 to the LED controller inside the hoisted container\n\n### System Architecture\n\n- Input: A mechanical lever on the slot‑machine scenic piece\n- Microcontroller: Teensy 3.2 reads the lever, performs debouncing, and exposes a clean event/state over a lightweight serial protocol\n- Game engine: A Python application receives the lever event, runs the slot logic (randomness, state machine, win conditions), and triggers reel animations and outcomes\n- Output: The Python engine renders the visuals and outputs a stable HDMI feed; this feed is extended over RJ45 to the LED controller, which drives the container‑mounted LED wall",
       "thumbnail": {
-        "type": "gif",
-        "path": "/media/projects/NAOEUMAFESTA05_001_3.gif"
+        "type": "video",
+        "path": "/media/projects/gif_1.mp4"
       },
       "mediaGallery": [
         {
@@ -254,26 +254,8 @@
           "layout": "standard"
         },
         {
-          "type": "gif",
-          "path": "/media/projects/NAOEUMAFESTA05_001_2.gif",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "image",
-          "path": "/media/projects/NAOEUMAFESTA05_002.jpg",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "image",
-          "path": "/media/projects/NAOEUMAFESTA05_042.jpg",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "image",
-          "path": "/media/projects/NAOEUMAFESTA05_035.jpg",
+          "type": "video",
+          "path": "/media/projects/Untitled.mp4",
           "caption": "",
           "layout": "standard"
         }
