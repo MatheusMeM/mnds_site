@@ -270,6 +270,18 @@
           "path": "/media/projects/NAOEUMAFESTA05_279.jpg",
           "caption": "",
           "layout": "standard"
+        },
+        {
+          "type": "video",
+          "path": "/media/projects/lab.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "video",
+          "path": "/media/projects/labaaaaaa.mp4",
+          "caption": "",
+          "layout": "standard"
         }
       ]
     }
