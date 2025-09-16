@@ -22,7 +22,7 @@
   width: 100%;
   height: auto;
   max-height: 50vh; /* Reduced max-height to fit viewport better */
-  object-fit: contain; /* Changed from cover to contain */
+  object-fit: cover; /* Changed from cover to contain */
   display: block;
   background: var(--color-border);
 }
@@ -226,7 +226,7 @@
 .gallery-item.layout-tall img,
 .gallery-item.layout-tall video {
   max-height: 60vh;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .gallery-item.layout-full-bleed {

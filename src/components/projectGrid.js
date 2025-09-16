@@ -40,9 +40,9 @@ function createProjectCard(project) {
       <div class="project-card-media-wrapper">
         ${createThumbnailMedia(project)}
       </div>
-      <div class="project-card-overlay">
-        <h3 class="project-title">${project.title}</h3>
-        <p class="project-client">${project.client}</p>
+      <div class="project-card-content">
+        <h3 class="project-card-title">${project.title}</h3>
+        <p class="project-card-client">${project.client}</p>
       </div>
     </div>
   `;
