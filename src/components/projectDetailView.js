@@ -2,7 +2,7 @@
 
 // 1. Import the 'marked' library
 import { marked } from 'marked';
-import { resolveGalleryPaths } from '../utils/mediaResolver.js';
+import { resolveGalleryPaths, resolveThumbnailPath } from '../utils/mediaResolver.js';
 
 /**
  * Renders a single media item for the gallery.
@@ -46,14 +46,24 @@ export function renderProjectDetail(project, containerElement) {
   
   // 3. Resolve all media gallery paths using the project ID
   const resolvedGallery = resolveGalleryPaths(project);
+  
+  // 4. Resolve thumbnail path
+  const thumbnailPath = resolveThumbnailPath(project);
 
   containerElement.innerHTML = `
     <div class="project-detail">
+      <!-- Hero thumbnail section -->
+      <div class="project-hero">
+        <img class="project-hero-thumbnail lazy" data-src="${thumbnailPath}" alt="${project.title}">
+        <button class="back-button">← Back to Grid</button>
+      </div>
+
+      <!-- Project title -->
       <header class="project-detail-header">
         <h1 class="project-detail-title">${project.title}</h1>
-        <button class="back-button">← Back to Grid</button>
       </header>
 
+      <!-- Content section -->
       <div class="project-detail-content">
         <aside class="project-meta">
           <div class="meta-item">
@@ -77,11 +87,12 @@ export function renderProjectDetail(project, containerElement) {
         </aside>
 
         <main class="project-story">
-          <!-- 4. This div will now correctly render the parsed HTML -->
+          <!-- Project description -->
           <div>${formattedBody}</div>
         </main>
       </div>
 
+      <!-- Media gallery -->
       <div class="project-detail-gallery">
         ${resolvedGallery.map(createMediaGalleryItem).join('')}
       </div>

@@ -6,35 +6,52 @@
   margin: 0 auto;
 }
 
+/* Hero Section with Thumbnail */
+.project-hero {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--spacing-xl);
+}
+
+.project-hero-thumbnail {
+  width: 100%;
+  height: 70vh;
+  object-fit: cover;
+  display: block;
+}
+
+.project-hero .back-button {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid var(--color-text-secondary);
+  color: var(--color-text-primary);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--easing-function);
+  backdrop-filter: blur(4px);
+}
+
+.project-hero .back-button:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-background);
+  border-color: var(--color-text-primary);
+}
+
 .project-detail-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
   padding-bottom: var(--spacing-lg);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
   border-bottom: 1px solid var(--color-border);
 }
 
 .project-detail-title {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-}
-
-.back-button {
-  background: none;
-  border: 1px solid var(--color-text-secondary);
-  color: var(--color-text-secondary);
-  padding: var(--spacing-sm) var(--spacing-md);
-  font-family: inherit;
-  font-size: var(--font-size-sm);
-  cursor: pointer;
-  transition: all var(--transition-speed) var(--easing-function);
-}
-
-.back-button:hover {
-  background-color: var(--color-text-primary);
-  color: var(--color-background);
-  border-color: var(--color-text-primary);
+  margin: 0;
 }
 
 .project-detail-content {
@@ -137,15 +154,26 @@
 }
 
 @media (max-width: 768px) {
+  .project-hero-thumbnail {
+    height: 50vh;
+  }
+  
+  .project-hero .back-button {
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+  }
+  
   .project-detail-content {
     grid-template-columns: 1fr;
     gap: var(--spacing-lg);
   }
-  .project-detail-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-md);
+  
+  .project-detail-title {
+    font-size: var(--font-size-lg);
   }
+  
   .project-detail-gallery {
     grid-template-columns: 1fr;
   }
