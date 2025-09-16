@@ -15,24 +15,24 @@
       "body": "Oi Futuro apresenta a exposição inédita “Simbiose – A conexão pelos fungos”. Com criação da Deeplab Project – estúdio que integra design e tecnologia para criar experiências – e curadoria de Eduardo Carvalho, a mostra traz de maneira lúdica a surpreendente e pouco conhecida imensidão do universo dos fungos.\n\n“Falar de fungos é abordar a coletividade, a conexão em redes, a transformação na natureza e pela natureza. Estamos entrelaçados, assim como os fungos em suas redes miceliais, responsáveis por nutrir cogumelos e facilitar a comunicação entre espécies vegetais. Essa grande membrana quimicamente sensível, que permite a conexão entre as partes, mesmo a centenas de metros de distância, é uma bela demonstração de como nossas ações têm o poder de impactar o todo, e como o todo nos impacta”, explica Carvalho, curador da mostra.\n\n“Simbiose é um pequeno recorte sobre essa vastidão que é o universo dos fungos. Ao produzirmos conteúdos como o apresentado na mostra, reforçamos nossa missão sobre o uso do digital do analógico para entreter e compartilhar conhecimento, abordando temas ligados à ciência e ao meio ambiente”, afirma o sócio-diretor da Deeplab Felipe Reif.",
       "thumbnail": {
         "type": "image",
-        "path": "thumbnail.jpg"
+        "path": "/media/projects/thumbnail-simbiose.jpg"
       },
       "mediaGallery": [
         {
           "type": "image",
-          "path": "gallery-01.jpg",
+          "path": "/media/projects/gallery-simbiose-01.jpg",
           "caption": "",
           "layout": "tall"
         },
         {
           "type": "image",
-          "path": "gallery-02.jpg",
+          "path": "/media/projects/gallery-simbiose-02.jpg",
           "caption": "",
           "layout": "standard"
         },
         {
           "type": "image",
-          "path": "gallery-03.jpg",
+          "path": "/media/projects/gallery-simbiose-03.jpg",
           "caption": "",
           "layout": "large"
         }

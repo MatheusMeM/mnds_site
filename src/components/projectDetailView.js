@@ -2,11 +2,10 @@
 
 // 1. Import the 'marked' library
 import { marked } from 'marked';
-import { resolveGalleryPaths, resolveThumbnailPath } from '../utils/mediaResolver.js';
 
 /**
  * Renders a single media item for the gallery.
- * @param {object} media - A media object with resolved path from the project's mediaGallery array.
+ * @param {object} media - A media object from the project's mediaGallery array.
  * @returns {string} The HTML string for the media item.
  */
 function createMediaGalleryItem(media) {
@@ -40,22 +39,16 @@ function createMediaGalleryItem(media) {
  * @param {HTMLElement} containerElement - The DOM element to inject the content into.
  */
 export function renderProjectDetail(project, containerElement) {
-  // 2. Process the body text through the marked parser.
+  // Process the body text through the marked parser.
   // The `breaks: true` option ensures single newlines are rendered as <br> tags.
   const formattedBody = marked.parse(project.body || '', { breaks: true });
-  
-  // 3. Resolve all media gallery paths using the project ID
-  const resolvedGallery = resolveGalleryPaths(project);
-  
-  // 4. Resolve thumbnail path
-  const thumbnailPath = resolveThumbnailPath(project);
 
   containerElement.innerHTML = `
     <article class="project-detail">
       <!-- Hero section with constrained thumbnail -->
       <section class="project-hero">
         <div class="hero-container">
-          <img class="project-hero-thumbnail lazy" data-src="${thumbnailPath}" alt="${project.title}">
+          <img class="project-hero-thumbnail lazy" data-src="${project.thumbnail.path}" alt="${project.title}">
         </div>
       </section>
 
@@ -96,7 +89,7 @@ export function renderProjectDetail(project, containerElement) {
 
           <!-- Right column: Visual content -->
           <main class="project-gallery">
-            ${resolvedGallery.map(createMediaGalleryItem).join('')}
+            ${project.mediaGallery.map(createMediaGalleryItem).join('')}
           </main>
         </div>
       </section>

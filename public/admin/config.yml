@@ -8,17 +8,14 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.matheusmsmendes.workers.dev
   
-# Global media configuration (fallback for general assets)
-media_folder: "public/media/global"
-public_folder: "/media/global"
+# Media files organized by category for better management
+media_folder: "public/media/projects"
+public_folder: "/media/projects"
 
 # Defines the editable content types
 collections:
   - name: "projects"
     label: "Portfolio Content"
-    # Project-specific media folders using template tags
-    media_folder: "public/media/projects/{{fields.id}}"
-    public_folder: "/media/projects/{{fields.id}}"
     files:
       - name: "main_projects"
         label: "Projects"
