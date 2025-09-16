@@ -124,12 +124,6 @@
         },
         {
           "type": "image",
-          "path": "/media/projects/DC055C08-F8F6-4537-A676-532E3BFBA7BB.JPG",
-          "caption": "",
-          "layout": "standard"
-        },
-        {
-          "type": "image",
           "path": "/media/projects/IMG_3021.jpg",
           "caption": "",
           "layout": "standard"
@@ -137,6 +131,12 @@
         {
           "type": "video",
           "path": "/media/projects/gUntitled.mp4",
+          "caption": "",
+          "layout": "standard"
+        },
+        {
+          "type": "image",
+          "path": "/media/projects/DC055C08-F8F6-4537-A676-532E3BFBA7BB.JPG",
           "caption": "",
           "layout": "standard"
         }
